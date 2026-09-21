@@ -57,7 +57,7 @@ Las IP de los 3 servidores mas rapidos son:
 <br>
 **OpenDNS**: OpenDNS es una empresa que ofrece el servicio de resolución de nombres de dominio (DNS) gratuito (para uso privado en el hogar) y abierto en su versión más básica y original.
 <br>
-**DNS4EU**: 
+**DNS4EU**: DNS4EU es una iniciativa de la Unión Europea que proporciona un servicio de resolución del sistema de nombres de dominio (DNS) seguro y que cumple con la normativa de privacidad.
 
 ## Webgrafia
 ### 1. Investigación de Jerarquía:
@@ -79,7 +79,13 @@ superior (TLD)?**
      * **[Diferencia Registry y Registrar](https://www.bluehost.com/es-es/blog/registro-de-dominios-vs-registrador-una-guia-completa-para-el-sistema-de-nombres-de-dominio/)**
    * Investiga: ¿Qué es **DNSSEC** y qué problema de seguridad intenta resolver en las resoluciones **DNS**?
      * **[DNSSEC](https://learn.microsoft.com/es-es/windows-server/networking/dns/dnssec-overview)**
-      
+
+
+### 3. Rendimiento DNS
+* **Informacion sobre empresas:**
+  * **[Comodo](https://es.wikipedia.org/wiki/Comodo)**
+  * **[OpenDNS](https://es.wikipedia.org/wiki/OpenDNS)**
+  * **[DNS4EU](https://es.wikipedia.org/wiki/DNS4EU)**
 
 
 
