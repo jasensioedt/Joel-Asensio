@@ -4,7 +4,8 @@ Joel Asensio Chavarria
 ![Imagen DNS](../img/dns.png)
 <br>
 <br>
-<br>
+
+.,ñ<br>
 <br>
 ## El ecosistema DNS (OSINT y Web) [2p]
 El sistema DNS es una estructura jerárquica a nivel mundial. Para administrar redes, primero debemos
@@ -34,7 +35,7 @@ superior (TLD)?
 * **[¿Qué organismo internacional coordina y asigna los parámetros a nivel global del sistema de nombres de dominio e IPs?](https://es.wikipedia.org/wiki/Corporaci%C3%B3n_de_Internet_para_la_Asignaci%C3%B3n_de_Nombres_y_N%C3%BAmeros)**
 * **¿Qué empresa u organismo gestiona (Registry) cada uno de los siguientes dominios de nivel
 superior (TLD)?**
-* **[.es](https://helpdesk.cdmon.com/portal/es/kb/articles/informaci%C3%B3n-de-los-dominios-es)**: Está gestionado por la organización **red.es**.
+   * **[.es](https://helpdesk.cdmon.com/portal/es/kb/articles/informaci%C3%B3n-de-los-dominios-es)**
 
 
 
