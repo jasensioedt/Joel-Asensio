@@ -29,6 +29,18 @@ superior (TLD)?
     * Investiga: ¿Qué es **DNSSEC** y qué problema de seguridad intenta resolver en las resoluciones **DNS**?
         * **DNSSEC** (Domain Name System Security Extensions) es un conjunto de extensiones de seguridad añadidas al sistema DNS tradicional. Su objetivo principal es proteger Internet contra falsificaciones y garantizar que los usuarios lleguen al sitio web correcto.
 
+### 3. Rendimiento DNS:
+Ve a la web de **[GRC DNS Benchmark](https://www.grc.com/dns/benchmark.htm?utm_source=gemini)**
+<br>
+Descarga e inicia la aplicación (no requiere instalación).
+<br>
+Ejecuta el test para comprobar cuáles son los servidores DNS más rápidos desde tu ubicación.
+<br>
+Selecciona los 3 servidores más rápidos de la lista, anota sus IPs y argumenta brevemente de
+qué empresas son. (Los utilizarás en la siguiente fase).
+<br>
+
+
 ## Webgrafia
 ### 1. Investigación de Jerarquía:
 * **[¿Qué organismo internacional coordina y asigna los parámetros a nivel global del sistema de nombres de dominio e IPs?](https://es.wikipedia.org/wiki/Corporaci%C3%B3n_de_Internet_para_la_Asignaci%C3%B3n_de_Nombres_y_N%C3%BAmeros)**
@@ -40,7 +52,15 @@ superior (TLD)?**
 ### 2. Herramientas OSINT (Whois y DNS Lookup):
 * **Utiliza herramientas online (como Dominios.es, whois.com, nslookup.io) para responder a lo siguiente:**
     * ¿Qué información te brinda una consulta Whois sobre un dominio?
-         * **[Prueba con ifp.es]()**
+      ![Prueba con ifp.es](../img/dominio_ifp.png)
+      Lo he hecho en dominios.es
+      <br>
+      <br>
+      <br>
+   * Define brevemente la diferencia entre el Registry de la base de datos y el Registrar (Registrador) del dominio.
+     * **[Diferencia Registry y Registrar](https://www.bluehost.com/es-es/blog/registro-de-dominios-vs-registrador-una-guia-completa-para-el-sistema-de-nombres-de-dominio/)**
+   * Investiga: ¿Qué es **DNSSEC** y qué problema de seguridad intenta resolver en las resoluciones **DNS**?
+     * **[DNSSEC](https://learn.microsoft.com/es-es/windows-server/networking/dns/dnssec-overview)**
       
 
 
