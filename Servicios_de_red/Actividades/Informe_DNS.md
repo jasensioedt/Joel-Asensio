@@ -39,7 +39,8 @@ Ejecuta el test para comprobar cuáles son los servidores DNS más rápidos desd
 Selecciona los 3 servidores más rápidos de la lista, anota sus IPs y argumenta brevemente de
 qué empresas son. (Los utilizarás en la siguiente fase).
 <br>
-
+La aplicacion era de pago, he utilizado DNS Jumper
+![Imagen DNS Jumper](../img/dns_jumper.png)
 
 ## Webgrafia
 ### 1. Investigación de Jerarquía:
