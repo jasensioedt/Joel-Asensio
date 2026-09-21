@@ -16,6 +16,14 @@ entender quién gestiona cada parte del pastel.
 * ¿Qué empresa u organismo gestiona (Registry) cada uno de los siguientes dominios de nivel
 superior (TLD)?
  1. `.es` Esta gestionado por la organicacion **red.es**  https://helpdesk.cdmon.com/portal/es/kb/articles/informaci%C3%B3n-de-los-dominios-es
- 2. `.cat` Està gestionado por **Accent Obert** (antes era **Fundació puntCAT**)
- 3. `.edu`
- 4. `.ifp.es`
+ 2. `.cat` Esta gestionado por **Accent Obert** (antes era **Fundació puntCAT**)
+ 3. `.edu` Esta gestionado por **Educause**
+ 4. `.ifp.es` Esta gestionado por **Grupo Planeta**
+
+### 2. Herramientas OSINT (Whois y DNS Lookup):
+* **Utiliza herramientas online (como Dominios.es, whois.com, nslookup.io) para responder a lo siguiente:**
+  a. ¿Qué información te brinda una consulta Whois sobre un dominio?
+  b. Define brevemente la diferencia entre el Registry de la base de datos y el Registrar (Registrador)
+del dominio.
+  c. Investiga: ¿Qué es **DNSSEC** y qué problema de seguridad intenta resolver en las resoluciones
+**DNS**?
