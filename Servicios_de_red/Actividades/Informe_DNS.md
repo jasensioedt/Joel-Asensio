@@ -40,7 +40,16 @@ Selecciona los 3 servidores más rápidos de la lista, anota sus IPs y argumenta
 qué empresas son. (Los utilizarás en la siguiente fase).
 <br>
 La aplicacion era de pago, he utilizado DNS Jumper
+<br>
 ![Imagen DNS Jumper](../img/dns_jumper.png)
+<br>
+Las IP de los 3 servidores mas rapidos son:
+<br>
+**Comodo: 156.154.71.22**
+<br>
+**OpenDNS: 208.67.222.222**
+<br>
+**DNS4EU: 86.54.11.100**
 
 ## Webgrafia
 ### 1. Investigación de Jerarquía:
