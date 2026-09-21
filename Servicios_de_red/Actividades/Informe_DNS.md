@@ -50,6 +50,14 @@ Las IP de los 3 servidores mas rapidos son:
 **OpenDNS: 208.67.222.222**
 <br>
 **DNS4EU: 86.54.11.100**
+<br>
+**Informacion sobre empresas:**
+<br>
+**Comodo**: Comodo Group, Inc. es un grupo privado de empresas que provee de software y certificados digitales SSL fundada en 1998, con sede en Clifton, Nueva Jersey, Estados Unidos.
+<br>
+**OpenDNS**: OpenDNS es una empresa que ofrece el servicio de resolución de nombres de dominio (DNS) gratuito (para uso privado en el hogar) y abierto en su versión más básica y original.
+<br>
+**DNS4EU**: 
 
 ## Webgrafia
 ### 1. Investigación de Jerarquía:
