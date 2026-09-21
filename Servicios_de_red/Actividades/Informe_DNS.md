@@ -4,8 +4,7 @@ Joel Asensio Chavarria
 ![Imagen DNS](../img/dns.png)
 <br>
 <br>
-
-.,ñ<br>
+<br>
 <br>
 ## El ecosistema DNS (OSINT y Web) [2p]
 El sistema DNS es una estructura jerárquica a nivel mundial. Para administrar redes, primero debemos
@@ -26,9 +25,9 @@ superior (TLD)?
     * ¿Qué información te brinda una consulta Whois sobre un dominio?
         * Una consulta Whois te muestra los datos de registro de un dominio, incluyendo las fechas clave, el proveedor y (si es público) la información de contacto del propietario
     * Define brevemente la diferencia entre el Registry de la base de datos y el Registrar (Registrador) del dominio.
-        * El **Registry** (Registro) es la organización central que gestiona y tiene la autoridad total sobre una base de datos de un TLD específico (por ejemplo, *Red.es* para los dominios `.es`), mientras que el **Registrar** (Registrador) es una empresa comercial autorizada (como *Cdmon*, *GoDaddy* o *DonDominio*) a la que los usuarios finales acuden para comprar y contratar esos dominios.
+        * El **Registry** (Registro) Es la organización central que gestiona y administra una extensión de dominio específica (como .com, .org o .es) mientras que **Registrar** (Registrador) es una empresa comercial autorizada a la que los usuarios finales acuden para comprar y contratar esos dominios.
     * Investiga: ¿Qué es **DNSSEC** y qué problema de seguridad intenta resolver en las resoluciones **DNS**?
-        * **DNSSEC** (Extensiones de Seguridad del Sistema de Nombres de Dominio) es un conjunto de extensiones que añade seguridad al DNS mediante **firmas digitales criptográficas**. Intenta resolver el problema de la falsificación de datos y los ataques de **envenenamiento de caché (DNS Spoofing)**, garantizando que las respuestas que recibe el usuario provienen realmente del servidor de origen legítimo y no han sido modificadas por un atacante en el camino.
+        * **DNSSEC** 
 
 ## Webgrafia
 ### 1. Investigación de Jerarquía:
