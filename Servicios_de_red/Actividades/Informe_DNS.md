@@ -18,7 +18,7 @@ superior (TLD)?
  1. `.es` Esta gestionado por la organicacion **red.es**  
  2. `.cat` Esta gestionado por **Accent Obert** (antes era **Fundació puntCAT**)
  3. `.edu` Esta gestionado por **Educause**
- 4. `.ifp.es` Esta gestionado por **Grupo Planeta**
+ 4. `.ifp.es` Esta gestionado por **Dominios.es o Red.es**, **Grupo Planeta** es el registrante pero no actua como organismo regulador
 
 ### 2. Herramientas OSINT (Whois y DNS Lookup):
 * **Utiliza herramientas online (como Dominios.es, whois.com, nslookup.io) para responder a lo siguiente:**
@@ -35,6 +35,13 @@ superior (TLD)?
 * **¿Qué empresa u organismo gestiona (Registry) cada uno de los siguientes dominios de nivel
 superior (TLD)?**
    * **[.es](https://helpdesk.cdmon.com/portal/es/kb/articles/informaci%C3%B3n-de-los-dominios-es)**
+   * **[.cat](https://es.wikipedia.org/wiki/.cat)**
+   * **[.edu](https://es.wikipedia.org/wiki/.edu)**
+### 2. Herramientas OSINT (Whois y DNS Lookup):
+* **Utiliza herramientas online (como Dominios.es, whois.com, nslookup.io) para responder a lo siguiente:**
+    * ¿Qué información te brinda una consulta Whois sobre un dominio?
+         * **[Prueba con ifp.es]()**
+      
 
 
 
