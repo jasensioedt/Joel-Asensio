@@ -27,7 +27,7 @@ superior (TLD)?
     * Define brevemente la diferencia entre el Registry de la base de datos y el Registrar (Registrador) del dominio.
         * El **Registry** (Registro) Es la organización central que gestiona y administra una extensión de dominio específica (como .com, .org o .es) mientras que **Registrar** (Registrador) es una empresa comercial autorizada a la que los usuarios finales acuden para comprar y contratar esos dominios.
     * Investiga: ¿Qué es **DNSSEC** y qué problema de seguridad intenta resolver en las resoluciones **DNS**?
-        * **DNSSEC** 
+        * **DNSSEC** (Domain Name System Security Extensions) es un conjunto de extensiones de seguridad añadidas al sistema DNS tradicional. Su objetivo principal es proteger Internet contra falsificaciones y garantizar que los usuarios lleguen al sitio web correcto.
 
 ## Webgrafia
 ### 1. Investigación de Jerarquía:
