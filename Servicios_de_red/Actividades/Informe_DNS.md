@@ -51,6 +51,7 @@ Las IP de los 3 servidores mas rapidos son:
 <br>
 **DNS4EU: 86.54.11.100**
 <br>
+<br>
 **Informacion sobre empresas:**
 <br>
 **Comodo**: Comodo Group, Inc. es un grupo privado de empresas que provee de software y certificados digitales SSL fundada en 1998, con sede en Clifton, Nueva Jersey, Estados Unidos.
@@ -65,7 +66,7 @@ Todo sistema operativo guarda las resoluciones DNS para no saturar la red.
 
 ### 1. Cambio de servidores DNS:
 * <strong>¿Cómo puedes ver mediante consola (CLI) qué servidores DNS tienes asignados actualmente en Windows y en Linux?</strong>
-    * En **Windows** he usado el comando `nslookup`. Al escribirlo sin nada más, te dice directamente el nombre y la IP del servidor DNS que tienes configurado en ese momento.                          
+    * En **Windows** he usado el comando `nslookup`. Al escribirlo sin nada más, te dice directamente el nombre y la IP del servidor DNS que tienes configurado en ese momento. <br>                         
     ![nslookup Windows](../img/nslookup.png)
     * En **Linux** lo he mirado con `resolvectl status`, que te muestra los DNS que tiene asignados cada interfaz de red.
 
@@ -73,24 +74,27 @@ Todo sistema operativo guarda las resoluciones DNS para no saturar la red.
     * He puesto como DNS primario **[TU_IP_1]** y secundario **[TU_IP_2]** (los que saqué en el Benchmark), desde el Centro de redes de Windows → Cambiar configuración del adaptador → Propiedades del adaptador → Protocolo de Internet versión 4 (TCP/IPv4).
     ![Cambio de DNS](../img/cambio_dns.png)
     <br>
+    
     * Para comprobar que el cambio se había aplicado bien, he vuelto a ejecutar `nslookup` y ya me aparecía la nueva IP como servidor DNS.
     ![Comprobación con nslookup](../img/nslookup_check.png)
     <br>
 
 * <strong>¿En qué menú de tu dispositivo móvil (Android/iOS) podrías forzar el uso de unos DNS específicos para tu conexión Wi-Fi?</strong>
     * Tengo un iPhone, así que lo he mirado en **iOS**: Ajustes → Wi-Fi → pulsando la "i" que sale al lado de la red a la que estoy conectado → Configuración DNS. Ahí puedes poner el modo manual e introducir los DNS que quieras.
+      ![Dns IOS](../img/Dns_ios.png)
 
 ### 2. Gestión de la caché DNS (ipconfig / resolvectl):
 * **Utilizando tu terminal de Windows (ipconfig /displaydns) o Linux (resolvectl statistics o similar): Muestra una captura de pantalla de algunas direcciones almacenadas en la caché de tu equipo.**
     * En **Windows** he usado `ipconfig /displaydns`, que te saca un listado con todas las páginas que has visitado hace poco junto con su IP y el tiempo que le queda en la caché (TTL).
     ![Caché DNS Windows](../img/cache_dns.png)
     <br>
-    * En **Linux** se puede ver algo parecido con `resolvectl statistics`, que muestra cuántas consultas se han resuelto usando la caché.
+    * En **Linux** se puede ver algo parecido con `resolvectl statistics`, que muestra cuántas consultas se han resuelto usando la caché.<br>
 
 * <strong>Vacía la caché de tu equipo (ipconfig /flushdns o resolvectl flush-caches). Explica para qué es útil esta acción en el día a día de un administrador de sistemas.</strong>
-    * En **Windows** he ejecutado `ipconfig /flushdns`, que borra toda la caché DNS del equipo.
+    * En **Windows** he ejecutado `ipconfig /flushdns`, que borra toda la caché DNS del equipo.<br>
     ![Vaciado de caché](../img/flush_dns.png)
-    <br>
+<br>
+
     * En **Linux** el comando equivalente sería `resolvectl flush-caches`.
     * Esto es útil, por ejemplo, cuando una página web ha cambiado de servidor y sigue apareciendo la IP antigua, cuando se sospecha que la caché se ha "envenenado" con una dirección falsa (*DNS cache poisoning*), o simplemente para descartar que el problema de conexión venga de una entrada antigua guardada en el equipo.
 
