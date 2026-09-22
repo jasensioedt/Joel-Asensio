@@ -71,8 +71,9 @@ Todo sistema operativo guarda las resoluciones DNS para no saturar la red.
     * En **Linux** lo he mirado con `resolvectl status`, que te muestra los DNS que tiene asignados cada interfaz de red.
 
 * **Cambia la configuración de red de tu equipo principal (Windows o Linux) poniendo como DNS primario y secundario los que obtuviste en el Benchmark de la Fase 1. Muestra captura del cambio.**
-    * He puesto como DNS primario **[TU_IP_1]** y secundario **[TU_IP_2]** (los que saqué en el Benchmark), desde el Centro de redes de Windows → Cambiar configuración del adaptador → Propiedades del adaptador → Protocolo de Internet versión 4 (TCP/IPv4).
+    * He puesto como DNS primario el de **Comodo**, la ip és **[156.154.71.22]** y secundario el de OpenDNS, ip **[208.67.222.222]** (los dos mas rapidos en el Benchmark)
     ![Cambio de DNS](../img/cambio_dns.png)
+    ![Cambio de DNS](../img/cambio_dns2.png)
     <br>
     
     * Para comprobar que el cambio se había aplicado bien, he vuelto a ejecutar `nslookup` y ya me aparecía la nueva IP como servidor DNS.
@@ -81,7 +82,9 @@ Todo sistema operativo guarda las resoluciones DNS para no saturar la red.
 
 * <strong>¿En qué menú de tu dispositivo móvil (Android/iOS) podrías forzar el uso de unos DNS específicos para tu conexión Wi-Fi?</strong>
     * Tengo un iPhone, así que lo he mirado en **iOS**: Ajustes → Wi-Fi → pulsando la "i" que sale al lado de la red a la que estoy conectado → Configuración DNS. Ahí puedes poner el modo manual e introducir los DNS que quieras.
-      ![Dns IOS](../img/Dns_ios.png)
+     <p align="center">
+        <img src="../img/Dns_ios.png" alt="Dns IOS" width="400">
+     </p>
 
 ### 2. Gestión de la caché DNS (ipconfig / resolvectl):
 * **Utilizando tu terminal de Windows (ipconfig /displaydns) o Linux (resolvectl statistics o similar): Muestra una captura de pantalla de algunas direcciones almacenadas en la caché de tu equipo.**
