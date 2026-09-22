@@ -59,6 +59,42 @@ Las IP de los 3 servidores mas rapidos son:
 <br>
 **DNS4EU**: DNS4EU es una iniciativa de la Unión Europea que proporciona un servicio de resolución del sistema de nombres de dominio (DNS) seguro y que cumple con la normativa de privacidad.
 
+## Configuración y Caché [2p]
+Todo sistema operativo guarda las resoluciones DNS para no saturar la red.
+<br>
+
+### 1. Cambio de servidores DNS:
+* <strong>¿Cómo puedes ver mediante consola (CLI) qué servidores DNS tienes asignados actualmente en Windows y en Linux?</strong>
+    * En **Windows** he usado el comando `nslookup`. Al escribirlo sin nada más, te dice directamente el nombre y la IP del servidor DNS que tienes configurado en ese momento.
+    ![nslookup Windows](../img/nslookup.png)
+    <br>
+    * En **Linux** lo he mirado con `resolvectl status`, que te muestra los DNS que tiene asignados cada interfaz de red.
+
+* **Cambia la configuración de red de tu equipo principal (Windows o Linux) poniendo como DNS primario y secundario los que obtuviste en el Benchmark de la Fase 1. Muestra captura del cambio.**
+    * He puesto como DNS primario **[TU_IP_1]** y secundario **[TU_IP_2]** (los que saqué en el Benchmark), desde el Centro de redes de Windows → Cambiar configuración del adaptador → Propiedades del adaptador → Protocolo de Internet versión 4 (TCP/IPv4).
+    ![Cambio de DNS](../img/cambio_dns.png)
+    <br>
+    * Para comprobar que el cambio se había aplicado bien, he vuelto a ejecutar `nslookup` y ya me aparecía la nueva IP como servidor DNS.
+    ![Comprobación con nslookup](../img/nslookup_check.png)
+    <br>
+
+* <strong>¿En qué menú de tu dispositivo móvil (Android/iOS) podrías forzar el uso de unos DNS específicos para tu conexión Wi-Fi?</strong>
+    * Tengo un iPhone, así que lo he mirado en **iOS**: Ajustes → Wi-Fi → pulsando la "i" que sale al lado de la red a la que estoy conectado → Configuración DNS. Ahí puedes poner el modo manual e introducir los DNS que quieras.
+
+### 2. Gestión de la caché DNS (ipconfig / resolvectl):
+* **Utilizando tu terminal de Windows (ipconfig /displaydns) o Linux (resolvectl statistics o similar): Muestra una captura de pantalla de algunas direcciones almacenadas en la caché de tu equipo.**
+    * En **Windows** he usado `ipconfig /displaydns`, que te saca un listado con todas las páginas que has visitado hace poco junto con su IP y el tiempo que le queda en la caché (TTL).
+    ![Caché DNS Windows](../img/cache_dns.png)
+    <br>
+    * En **Linux** se puede ver algo parecido con `resolvectl statistics`, que muestra cuántas consultas se han resuelto usando la caché.
+
+* <strong>Vacía la caché de tu equipo (ipconfig /flushdns o resolvectl flush-caches). Explica para qué es útil esta acción en el día a día de un administrador de sistemas.</strong>
+    * En **Windows** he ejecutado `ipconfig /flushdns`, que borra toda la caché DNS del equipo.
+    ![Vaciado de caché](../img/flush_dns.png)
+    <br>
+    * En **Linux** el comando equivalente sería `resolvectl flush-caches`.
+    * Esto es útil, por ejemplo, cuando una página web ha cambiado de servidor y sigue apareciendo la IP antigua, cuando se sospecha que la caché se ha "envenenado" con una dirección falsa (*DNS cache poisoning*), o simplemente para descartar que el problema de conexión venga de una entrada antigua guardada en el equipo.
+
 ## Webgrafia
 ### 1. Investigación de Jerarquía:
 * **[¿Qué organismo internacional coordina y asigna los parámetros a nivel global del sistema de nombres de dominio e IPs?](https://es.wikipedia.org/wiki/Corporaci%C3%B3n_de_Internet_para_la_Asignaci%C3%B3n_de_Nombres_y_N%C3%BAmeros)**
@@ -67,19 +103,10 @@ superior (TLD)?**
    * **[.es](https://helpdesk.cdmon.com/portal/es/kb/articles/informaci%C3%B3n-de-los-dominios-es)**
    * **[.cat](https://es.wikipedia.org/wiki/.cat)**
    * **[.edu](https://es.wikipedia.org/wiki/.edu)**
-### 2. Herramientas OSINT (Whois y DNS Lookup):
-* **Utiliza herramientas online (como Dominios.es, whois.com, nslookup.io) para responder a lo siguiente:**
-    * ¿Qué información te brinda una consulta Whois sobre un dominio?
-      ![Prueba con ifp.es](../img/dominio_ifp.png)
-      Lo he hecho en dominios.es
-      <br>
-      <br>
-      <br>
-   * Define brevemente la diferencia entre el Registry de la base de datos y el Registrar (Registrador) del dominio.
-     * **[Diferencia Registry y Registrar](https://www.bluehost.com/es-es/blog/registro-de-dominios-vs-registrador-una-guia-completa-para-el-sistema-de-nombres-de-dominio/)**
-   * Investiga: ¿Qué es **DNSSEC** y qué problema de seguridad intenta resolver en las resoluciones **DNS**?
-     * **[DNSSEC](https://learn.microsoft.com/es-es/windows-server/networking/dns/dnssec-overview)**
 
+### 2. Herramientas OSINT (Whois y DNS Lookup):
+* **[Diferencia Registry y Registrar](https://www.bluehost.com/es-es/blog/registro-de-dominios-vs-registrador-una-guia-completa-para-el-sistema-de-nombres-de-dominio/)**
+* **[DNSSEC](https://learn.microsoft.com/es-es/windows-server/networking/dns/dnssec-overview)**
 
 ### 3. Rendimiento DNS
 * **Informacion sobre empresas:**
@@ -87,5 +114,13 @@ superior (TLD)?**
   * **[OpenDNS](https://es.wikipedia.org/wiki/OpenDNS)**
   * **[DNS4EU](https://es.wikipedia.org/wiki/DNS4EU)**
 
+### 4. Cambio de servidores DNS:
+* **[Comando nslookup](https://raiolanetworks.com/blog/nslookup/)**
+* **[resolvectl (man page)](https://man.archlinux.org/man/resolvectl.1.en)**
+* **[Configurar DNS en iOS](https://www.xatakamovil.com/conectividad/que-dns-privado-todas-ventajas-configurarlo-tu-movil)**
+
+### 5. Gestión de la caché DNS:
+* **[ipconfig /displaydns y /flushdns](https://www.computerhope.com/ipconfig.htm)**
+* **[resolvectl statistics y flush-caches](https://www.mankier.com/1/resolvectl)**
 
 
