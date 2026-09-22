@@ -1,3 +1,6 @@
 dc=realmadrid, dc=com
  |--- ou=Departamentos
 	|--- ou=Marketing
+	|--- ou=RRHH
+	|--- ou=Finanzas
+	|--- ou=IT
