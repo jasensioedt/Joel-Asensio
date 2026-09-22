@@ -71,13 +71,12 @@ Todo sistema operativo guarda las resoluciones DNS para no saturar la red.
     * En **Linux** lo he mirado con `resolvectl status`, que te muestra los DNS que tiene asignados cada interfaz de red.
 
 * **Cambia la configuración de red de tu equipo principal (Windows o Linux) poniendo como DNS primario y secundario los que obtuviste en el Benchmark de la Fase 1. Muestra captura del cambio.**
-    * He puesto como DNS primario el de **Comodo**, la ip és **[156.154.71.22]** y secundario el de OpenDNS, ip **[208.67.222.222]** (los dos mas rapidos en el Benchmark)
-    ![Cambio de DNS](../img/cambio_dns.png)
-    ![Cambio de DNS](../img/cambio_dns2.png)
+    * He puesto como DNS primario el de **Comodo**, la ip és **[156.154.71.22]** y secundario el de OpenDNS, ip **[208.67.222.222]** (los dos mas rapidos en el Benchmark)<br>
+    ![Cambio de DNS](../img/cambio_dns.png)<br>
     <br>
     
     * Para comprobar que el cambio se había aplicado bien, he vuelto a ejecutar `nslookup` y ya me aparecía la nueva IP como servidor DNS.
-    ![Comprobación con nslookup](../img/nslookup_check.png)
+    ![Cambio de DNS](../img/cambio_dns2.png)
     <br>
 
 * <strong>¿En qué menú de tu dispositivo móvil (Android/iOS) podrías forzar el uso de unos DNS específicos para tu conexión Wi-Fi?</strong>
