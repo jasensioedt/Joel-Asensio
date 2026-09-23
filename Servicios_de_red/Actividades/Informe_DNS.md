@@ -171,9 +171,9 @@ He abierto **Wireshark**, he empezado a capturar en mi tarjeta de red principal 
     * En mi caso está a 0. Si está a 0 significa que la respuesta no viene directamente del servidor autoritativo del dominio, sino de un servidor intermedio (como el DNS de mi proveedor o el resolver que tenga configurado), que ya tenía la respuesta guardada en caché o la ha ido a buscar por mí.
 
 ### 5. Respuestas (Answers):
-* <strong>¿Qué servidor de correo de Google tiene la prioridad (preference) más alta (el número más bajo)?</strong>
-  ![Answers Wireshark](../img/wireshark_answers.png)<br>
-    * El servidor con el número de preference más bajo que aparece es **smtp.google.com** con preference 10, que es el que tiene mayor prioridad para recibir el correo.<br>
+* <strong>¿Qué servidor de correo de Google tiene la prioridad (preference) más alta (el número más bajo)?</strong><br>
+  ![Answers Wireshark](../img/wireshark_answers.png)<br><br>
+    * El servidor con el número de preference más bajo que aparece es **smtp.google.com** con preference 10, que es el que tiene mayor prioridad para recibir el correo.<br><br>
 ## Webgrafia
 ### 1. Investigación de Jerarquía:
 * **[¿Qué organismo internacional coordina y asigna los parámetros a nivel global del sistema de nombres de dominio e IPs?](https://es.wikipedia.org/wiki/Corporaci%C3%B3n_de_Internet_para_la_Asignaci%C3%B3n_de_Nombres_y_N%C3%BAmeros)**
