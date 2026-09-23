@@ -114,15 +114,15 @@ En un entorno profesional, especialmente servidores Linux, la herramienta nslook
 He usado el dominio `aliexpress.com` para todas las pruebas.
 
 * **A:** `dig aliexpress.com`
-    * En la sección **ANSWER SECTION** aparece la IP (o IPs) a la que resuelve el dominio, junto con el tipo de registro (A) y el TTL.
+    * En la sección **ANSWER SECTION** aparece la IP (o IPs) a la que resuelve el dominio, junto con el tipo de registro (A) y el TTL.<br><br>
     ![dig A aliexpress.com](../img/dig_a.png)
 
 * **Short:** `dig +short aliexpress.com`
-    * Este formato es útil en scripts de Bash porque solo devuelve la IP, sin todo el resto de información (cabecera, sección de pregunta, tiempos, etc...), así que se puede poner directamente en una variable o en un pipe sin tener que filtrar nada.
+    * Este formato es útil en scripts de Bash porque solo devuelve la IP, sin todo el resto de información (cabecera, sección de pregunta, tiempos, etc...), así que se puede poner directamente en una variable o en un pipe sin tener que filtrar nada.<br><br>
     ![dig +short aliexpress.com](../img/dig_short.png)
 
 * **MX:** `dig MX aliexpress.com`
-    * Aquí se ve el campo de **Preference** de cada servidor de correo, en este caso es 10 (sale al lado de mx2.mail.aliyun.com.). Cuanto más bajo es el número, más prioridad tiene ese servidor para recibir el correo primero.
+    * Aquí se ve el campo de **Preference** de cada servidor de correo, en este caso es 10 (sale al lado de mx2.mail.aliyun.com.). Cuanto más bajo es el número, más prioridad tiene ese servidor para recibir el correo primero.<br><br>
     ![dig MX aliexpress.com](../img/dig_mx.png)
 
 * **NS:** `dig NS aliexpress.com`
