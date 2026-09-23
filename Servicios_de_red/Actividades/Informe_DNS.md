@@ -161,8 +161,8 @@ He abierto **Wireshark**, he empezado a capturar en mi tarjeta de red principal 
     * El puerto de origen es uno dinámico (asignado al azar por mi equipo) y el puerto de destino es el **53**, que es el puerto conocido y estándar para DNS.
 
 ### 3. Identificador:
-* <strong>Expande la sección Domain Name System. ¿Qué identificador de transacción vincula la respuesta del servidor con la petición de tu cliente?</strong>
-    ![Transaction ID](../img/wireshark_transaction_id.png)
+* <strong>Expande la sección Domain Name System. ¿Qué identificador de transacción vincula la respuesta del servidor con la petición de tu cliente?</strong><br>
+    ![Transaction ID](../img/wireshark_transaction_id.png)<br>
     * El **Transaction ID** es un número que genera el cliente al hacer la petición, y el servidor devuelve ese mismo número en la respuesta. Así el cliente sabe que esa respuesta concreta corresponde a la pregunta que hizo (y no a otra consulta que esté en curso a la vez).
 
 ### 4. Flags:
