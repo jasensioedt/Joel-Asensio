@@ -134,9 +134,9 @@ He usado el dominio `aliexpress.com` para todas las pruebas.
     * El registro **SOA** solo hay uno por zona y contiene los datos administrativos de esa zona (servidor primario, email del administrador, número de serie, tiempos de refresco/reintento/caducidad...). El registro **NS**, en cambio, puede haber varios, y simplemente indica qué servidores son los responsables de resolver esa zona.
 
 * **Realiza una consulta a un dominio cualquiera. Observa el valor TTL. Vuelve a realizar la consulta a los 5 segundos. ¿Qué ha pasado con el valor numérico del TTL? ¿Qué nos demuestra esto?**
-    * He consultado el mismo dominio dos veces seguidas con unos segundos de diferencia y el valor del TTL ha bajado (aproximadamente los segundos que han pasado entre una consulta y otra).
-    ![TTL primera consulta](../img/ttl_1.png)
-    ![TTL segunda consulta](../img/ttl_2.png)
+    * He consultado el mismo dominio dos veces seguidas con unos segundos de diferencia y el valor del TTL ha bajado (aproximadamente los segundos que han pasado entre una consulta y otra).<br>
+    ![TTL primera consulta](../img/ttl_1.png)<br><br>
+    ![TTL segunda consulta](../img/ttl_2.png)<br>
     * Esto demuestra que la segunda respuesta no ha ido a preguntar al servidor autoritativo, sino que la ha servido directamente de la caché de mi resolver (por eso el TTL va bajando en vez de volver a su valor inicial). Si hubiera ido de nuevo al servidor autoritativo, el TTL habría vuelto a su valor máximo original.
 
 ### 3. Trazabilidad Completa (Trace):
