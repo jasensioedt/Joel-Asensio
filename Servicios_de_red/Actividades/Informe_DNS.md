@@ -156,9 +156,9 @@ He abierto **Wireshark**, he empezado a capturar en mi tarjeta de red principal 
     * Se usa **UDP**. DNS lo usa por defecto porque es un protocolo sin conexión, mucho más rápido y ligero que TCP (no hay que montar la conexión antes de mandar los datos), lo cual es ideal para consultas cortas como estas. Solo se usa TCP cuando la respuesta es demasiado grande para un único paquete UDP o en transferencias de zona.
 
 ### 2. Puertos:
-* <strong>Identifica el puerto de origen (dinámico) del cliente y el puerto de destino (conocido) del servidor.</strong>
+* <strong>Identifica el puerto de origen (dinámico) del cliente y el puerto de destino (conocido) del servidor.</strong><br>
     ![Puertos Wireshark](../img/wireshark_puertos.png)
-    * El puerto de origen es uno dinámico (asignado al azar por mi equipo, por ejemplo algo por encima del 49152) y el puerto de destino es el **53**, que es el puerto conocido y estándar para DNS.
+    * El puerto de origen es uno dinámico (asignado al azar por mi equipo) y el puerto de destino es el **53**, que es el puerto conocido y estándar para DNS.
 
 ### 3. Identificador:
 * <strong>Expande la sección Domain Name System. ¿Qué identificador de transacción vincula la respuesta del servidor con la petición de tu cliente?</strong>
