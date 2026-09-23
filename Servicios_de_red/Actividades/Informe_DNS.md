@@ -167,18 +167,17 @@ He abierto **Wireshark**, he empezado a capturar en mi tarjeta de red principal 
 
 ### 4. Flags:
 * <strong>En el paquete de Respuesta, despliega la sección Flags. Busca la opción Authoritative Answer. ¿Está a 0 o a 1? ¿Qué significa esto?</strong>
-    ![Flags Wireshark](../img/wireshark_flags.png)
-    * En mi caso está a **[0 / 1 — pon lo que veas en tu captura]**. Si está a 0 significa que la respuesta no viene directamente del servidor autoritativo del dominio, sino de un servidor intermedio (como el DNS de mi proveedor o el resolver que tenga configurado), que ya tenía la respuesta guardada en caché o la ha ido a buscar por mí.
+    ![Flags Wireshark](../img/wireshark_flags.png)<br>
+    * En mi caso está a 0. Si está a 0 significa que la respuesta no viene directamente del servidor autoritativo del dominio, sino de un servidor intermedio (como el DNS de mi proveedor o el resolver que tenga configurado), que ya tenía la respuesta guardada en caché o la ha ido a buscar por mí.
 
 ### 5. Respuestas (Answers):
 * <strong>¿Qué servidor de correo de Google tiene la prioridad (preference) más alta (el número más bajo)?</strong>
-    ![Answers Wireshark](../img/wireshark_answers.png)
-    * El servidor con el número de preference más bajo que aparece en mi captura es **[pon aquí el que te salga, ej. smtp.google.com con preference 10]**, que es el que tiene mayor prioridad para recibir el correo.
+  ![Answers Wireshark](../img/wireshark_answers.png)<br>
+    * El servidor con el número de preference más bajo que aparece es **smtp.google.com** con preference 10, que es el que tiene mayor prioridad para recibir el correo.<br>
 ## Webgrafia
 ### 1. Investigación de Jerarquía:
 * **[¿Qué organismo internacional coordina y asigna los parámetros a nivel global del sistema de nombres de dominio e IPs?](https://es.wikipedia.org/wiki/Corporaci%C3%B3n_de_Internet_para_la_Asignaci%C3%B3n_de_Nombres_y_N%C3%BAmeros)**
-* **¿Qué empresa u organismo gestiona (Registry) cada uno de los siguientes dominios de nivel
-superior (TLD)?**
+* **¿Qué empresa u organismo gestiona (Registry) cada uno de los siguientes dominios de nivel superior (TLD)?**<br>
    * **[.es](https://helpdesk.cdmon.com/portal/es/kb/articles/informaci%C3%B3n-de-los-dominios-es)**
    * **[.cat](https://es.wikipedia.org/wiki/.cat)**
    * **[.edu](https://es.wikipedia.org/wiki/.edu)**
