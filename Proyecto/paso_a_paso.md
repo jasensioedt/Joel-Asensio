@@ -4,10 +4,10 @@
 
 ### 1. BRIEFING - IDEAS - GRUPOS (16 de septiembre al 30 de septiembre)
 
-a. Dinámica de briefing para la elección de proyecto
-   i. Problemas de infraestructura y pitches técnicos
-   ii. Formación de equipos y briefing de infraestructura
-   iii. Qué aporto, qué busco para mi proyecto
+a. Dinámica de briefing para la elección de proyecto <br>
+   i. Problemas de infraestructura y pitches técnicos<br>
+   ii. Formación de equipos y briefing de infraestructura<br>
+   iii. Qué aporto, qué busco para mi proyecto<br>
 
 b. Constituir los equipos: firmar acuerdo de grupo ???????
 
