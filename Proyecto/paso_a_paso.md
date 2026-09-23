@@ -7,7 +7,7 @@
 - [Dinámica de briefing para la elección de proyecto](./Ideas_proyecto.md) <br>
   - Problemas de infraestructura y pitches técnicos
   - Formación de equipos y briefing de infraestructura
-  - Qué aporto, qué busco para mi proyecto
+  - [Qué aporto, qué busco para mi proyecto](./Que_aporto_que_busco.md) <br>
 - Constituir los equipos: firmar acuerdo de grupo
 - ¿Trello, Excel o vamos directo a GitBook o GitHub?
 
