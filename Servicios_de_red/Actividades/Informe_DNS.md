@@ -126,8 +126,8 @@ He usado el dominio `aliexpress.com` para todas las pruebas.
     ![dig MX aliexpress.com](../img/dig_mx.png)
 
 * **NS:** `dig NS aliexpress.com`
-    * Muestra los servidores que tienen la autoridad sobre las zonas de ese dominio, es decir, los servidores DNS oficiales donde está delegada la gestión del dominio.
-    ![dig NS aliexpress.com](../img/dig_ns.png)
+    * Muestra los servidores que tienen la autoridad sobre las zonas de ese dominio, es decir, los servidores DNS oficiales donde está delegada la gestión del dominio.<br><br>
+    <img src="../img/dig_ns.png" alt="Dig ns" width="500">
 
 ### 2. Autoridad y Caché (TTL):
 * <strong>¿Qué diferencia existe entre un registro SOA (Start of Authority) y un registro NS (Name Server)?</strong>
