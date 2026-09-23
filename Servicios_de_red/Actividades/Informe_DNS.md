@@ -147,7 +147,7 @@ He usado el dominio `aliexpress.com` para todas las pruebas.
 ## Análisis de Tráfico de Red (Wireshark) [3p]
 Vamos a comprobar qué viaja realmente por el cable físico cuando resolvemos un nombre.
 
-He abierto **Wireshark**, he empezado a capturar en mi tarjeta de red principal y he aplicado el filtro `dns` para quedarme solo con el tráfico DNS. Después, desde una terminal he forzado la consulta `nslookup -type=mx google.com` y he parado la captura para analizar el intercambio de Query y Response.
+He abierto **Wireshark**, he empezado a capturar en mi tarjeta de red principal y he aplicado el filtro `dns` para quedarme solo con el tráfico DNS.<br>
 
 ![Captura Wireshark filtro DNS](../img/wireshark_filtro.png)
 
