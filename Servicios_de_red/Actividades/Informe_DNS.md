@@ -93,11 +93,11 @@ Todo sistema operativo guarda las resoluciones DNS para no saturar la red.
     * En **Linux** se puede ver algo parecido con `resolvectl statistics`, que muestra cuántas consultas se han resuelto usando la caché.<br>
 
 * <strong>Vacía la caché de tu equipo (ipconfig /flushdns o resolvectl flush-caches). Explica para qué es útil esta acción en el día a día de un administrador de sistemas.</strong>
-    * En **Windows** he ejecutado `ipconfig /flushdns`, que borra toda la caché DNS del equipo.<br>
-    ![Vaciado de caché](../img/flush_dns.png)
-<br>
+    * En **Windows** he ejecutado `ipconfig /flushdns`, que borra toda la caché DNS del equipo.<br><br>
+    ![Vaciado de caché](../img/flush_dns.png)<br>
 
-* En **Linux** el comando equivalente sería `resolvectl flush-caches`.
+
+   * En **Linux** el comando equivalente sería `resolvectl flush-caches`.
 ```
 Vaciar la caché DNS es útil porque me permite comprobar al momento si un cambio de IP o de registro ya se está resolviendo bien,
 sin tener que esperar a que el TTL expire por sí solo.
@@ -105,7 +105,75 @@ También sirve para descartar que el problema sea una entrada antigua o "envenen
 cuando estoy intentando diagnosticar un fallo de conexión.
 Además es una acción rápida, segura y que no borra ni rompe nada en el sistema.
 ```
+<br>
 
+## Administración - Troubleshooting con DIG y CLI [3p]
+En un entorno profesional, especialmente servidores Linux, la herramienta nslookup se considera obsoleta, siendo dig - Domain Information Groper - el estándar de la industria.
+
+### 1. Consultas específicas de registros (dig en Linux/WSL):
+He usado el dominio `aliexpress.com` para todas las pruebas.
+
+* **A:** `dig aliexpress.com`
+    * En la sección **ANSWER SECTION** aparece la IP (o IPs) a la que resuelve el dominio, junto con el tipo de registro (A) y el TTL.
+    <img src="../img/dig_a.png" alt="dig A aliexpress.com" width="500">
+
+* **Short:** `dig +short aliexpress.com`
+    * Este formato es útil en scripts de Bash porque solo devuelve la IP en crudo, sin todo el resto de información (cabecera, sección de pregunta, tiempos, etc.), así que se puede meter directamente en una variable o en un pipe sin tener que filtrar nada.
+    <img src="../img/dig_short.png" alt="dig +short aliexpress.com" width="500">
+
+* **MX:** `dig MX aliexpress.com`
+    * Aquí se ve el campo de **Preference** (o Prioridad) de cada servidor de correo. Cuanto más bajo es el número, más prioridad tiene ese servidor para recibir el correo primero.
+    <img src="../img/dig_mx.png" alt="dig MX aliexpress.com" width="500">
+
+* **NS:** `dig NS aliexpress.com`
+    * Muestra los servidores que tienen la autoridad sobre las zonas de ese dominio, es decir, los servidores DNS oficiales donde está delegada la gestión del dominio.
+    <img src="../img/dig_ns.png" alt="dig NS aliexpress.com" width="500">
+
+### 2. Autoridad y Caché (TTL):
+* <strong>¿Qué diferencia existe entre un registro SOA (Start of Authority) y un registro NS (Name Server)?</strong>
+    * El registro **SOA** solo hay uno por zona y contiene los datos administrativos de esa zona (servidor primario, email del administrador, número de serie, tiempos de refresco/reintento/caducidad...). El registro **NS**, en cambio, puede haber varios, y simplemente indica qué servidores son los responsables de resolver esa zona.
+
+* **Realiza una consulta a un dominio cualquiera. Observa el valor TTL. Vuelve a realizar la consulta a los 5 segundos. ¿Qué ha pasado con el valor numérico del TTL? ¿Qué nos demuestra esto?**
+    * He consultado el mismo dominio dos veces seguidas con unos segundos de diferencia y el valor del TTL ha bajado (aproximadamente los segundos que han pasado entre una consulta y otra).
+    <img src="../img/ttl_1.png" alt="TTL primera consulta" width="500">
+    <img src="../img/ttl_2.png" alt="TTL segunda consulta" width="500">
+    * Esto demuestra que la segunda respuesta no ha ido a preguntar al servidor autoritativo, sino que la ha servido directamente de la caché de mi resolver (por eso el TTL va bajando en vez de volver a su valor inicial). Si hubiera ido de nuevo al servidor autoritativo, el TTL habría vuelto a su valor máximo original.
+
+### 3. Trazabilidad Completa (Trace):
+* **Ejecuta el comando: dig +trace aliexpress.com**
+    <img src="../img/dig_trace.png" alt="dig +trace aliexpress.com" width="500">
+    * Al hacer `+trace`, mi ordenador no pregunta directamente al DNS de siempre, sino que hace el recorrido completo: primero contacta con los **Root Servers** (representados por el punto "."), que le indican quién gestiona el TLD `.com`. Después pregunta a esos servidores del TLD `.com`, que le dicen cuáles son los servidores autoritativos concretos del dominio `aliexpress.com`. Y por último pregunta directamente a esos servidores autoritativos, que son los que finalmente le dan la IP real del dominio.
+
+## Análisis de Tráfico de Red (Wireshark) [3p]
+Vamos a comprobar qué viaja realmente por el cable físico cuando resolvemos un nombre.
+
+He abierto **Wireshark**, he empezado a capturar en mi tarjeta de red principal y he aplicado el filtro `dns` para quedarme solo con el tráfico DNS. Después, desde una terminal he forzado la consulta `nslookup -type=mx google.com` y he parado la captura para analizar el intercambio de Query y Response.
+
+<img src="../img/wireshark_filtro.png" alt="Captura Wireshark filtro DNS" width="500">
+
+### 1. Capa de Transporte:
+* <strong>¿Qué protocolo se utiliza (TCP o UDP)? ¿Por qué DNS utiliza este protocolo por defecto?</strong>
+    * Se usa **UDP**. DNS lo usa por defecto porque es un protocolo sin conexión, mucho más rápido y ligero que TCP (no hay que montar la conexión antes de mandar los datos), lo cual es ideal para consultas cortas como estas. Solo se usa TCP cuando la respuesta es demasiado grande para un único paquete UDP o en transferencias de zona.
+
+### 2. Puertos:
+* <strong>Identifica el puerto de origen (dinámico) del cliente y el puerto de destino (conocido) del servidor.</strong>
+    <img src="../img/wireshark_puertos.png" alt="Puertos Wireshark" width="500">
+    * El puerto de origen es uno dinámico (asignado al azar por mi equipo, por ejemplo algo por encima del 49152) y el puerto de destino es el **53**, que es el puerto conocido y estándar para DNS.
+
+### 3. Identificador:
+* <strong>Expande la sección Domain Name System. ¿Qué identificador de transacción vincula la respuesta del servidor con la petición de tu cliente?</strong>
+    <img src="../img/wireshark_transaction_id.png" alt="Transaction ID" width="500">
+    * El **Transaction ID** es un número que genera el cliente al hacer la petición, y el servidor devuelve ese mismo número en la respuesta. Así el cliente sabe que esa respuesta concreta corresponde a la pregunta que hizo (y no a otra consulta que esté en curso a la vez).
+
+### 4. Flags:
+* <strong>En el paquete de Respuesta, despliega la sección Flags. Busca la opción Authoritative Answer. ¿Está a 0 o a 1? ¿Qué significa esto?</strong>
+    <img src="../img/wireshark_flags.png" alt="Flags Wireshark" width="500">
+    * En mi caso está a **[0 / 1 — pon lo que veas en tu captura]**. Si está a 0 significa que la respuesta no viene directamente del servidor autoritativo del dominio, sino de un servidor intermedio (como el DNS de mi proveedor o el resolver que tenga configurado), que ya tenía la respuesta guardada en caché o la ha ido a buscar por mí.
+
+### 5. Respuestas (Answers):
+* <strong>¿Qué servidor de correo de Google tiene la prioridad (preference) más alta (el número más bajo)?</strong>
+    <img src="../img/wireshark_answers.png" alt="Answers Wireshark" width="500">
+    * El servidor con el número de preference más bajo que aparece en mi captura es **[pon aquí el que te salga, ej. smtp.google.com con preference 10]**, que es el que tiene mayor prioridad para recibir el correo.
 ## Webgrafia
 ### 1. Investigación de Jerarquía:
 * **[¿Qué organismo internacional coordina y asigna los parámetros a nivel global del sistema de nombres de dominio e IPs?](https://es.wikipedia.org/wiki/Corporaci%C3%B3n_de_Internet_para_la_Asignaci%C3%B3n_de_Nombres_y_N%C3%BAmeros)**
