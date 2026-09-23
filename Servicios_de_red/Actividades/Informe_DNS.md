@@ -87,7 +87,7 @@ Todo sistema operativo guarda las resoluciones DNS para no saturar la red.
 
 ### 2. Gestión de la caché DNS (ipconfig / resolvectl):
 * **Utilizando tu terminal de Windows (ipconfig /displaydns) o Linux (resolvectl statistics o similar): Muestra una captura de pantalla de algunas direcciones almacenadas en la caché de tu equipo.**
-    * En **Windows** he usado `ipconfig /displaydns`, que te saca un listado con todas las páginas que has visitado hace poco junto con su IP y el tiempo que le queda en la caché (TTL).
+    * En **Windows** he usado `ipconfig /displaydns`, que te da un listado con todas las páginas que has visitado hace poco junto con su IP y el tiempo que le queda en la caché (TTL).<br><br>
     ![Caché DNS Windows](../img/cache_dns.png)
     <br>
     * En **Linux** se puede ver algo parecido con `resolvectl statistics`, que muestra cuántas consultas se han resuelto usando la caché.<br>
@@ -97,8 +97,14 @@ Todo sistema operativo guarda las resoluciones DNS para no saturar la red.
     ![Vaciado de caché](../img/flush_dns.png)
 <br>
 
-    * En **Linux** el comando equivalente sería `resolvectl flush-caches`.
-    * Esto es útil, por ejemplo, cuando una página web ha cambiado de servidor y sigue apareciendo la IP antigua, cuando se sospecha que la caché se ha "envenenado" con una dirección falsa (*DNS cache poisoning*), o simplemente para descartar que el problema de conexión venga de una entrada antigua guardada en el equipo.
+* En **Linux** el comando equivalente sería `resolvectl flush-caches`.
+```
+Vaciar la caché DNS es útil porque me permite comprobar al momento si un cambio de IP o de registro ya se está resolviendo bien,
+sin tener que esperar a que el TTL expire por sí solo.
+También sirve para descartar que el problema sea una entrada antigua o "envenenada"
+cuando estoy intentando diagnosticar un fallo de conexión.
+Además es una acción rápida, segura y que no borra ni rompe nada en el sistema.
+```
 
 ## Webgrafia
 ### 1. Investigación de Jerarquía:
