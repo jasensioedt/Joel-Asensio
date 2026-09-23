@@ -1,74 +1,70 @@
 # El proyecto por etapas
 
-## PASO A PASO
+## Paso a paso
 
-### 1. BRIEFING - IDEAS - GRUPOS (16 de septiembre al 30 de septiembre)
+### 1. Briefing - Ideas - Grupos (16 de septiembre al 30 de septiembre)
 
-a. Dinámica de briefing para la elección de proyecto <br>
-   i. Problemas de infraestructura y pitches técnicos<br>
-   ii. Formación de equipos y briefing de infraestructura<br>
-   iii. Qué aporto, qué busco para mi proyecto<br>
+- [Dinámica de briefing para la elección de proyecto](./Ideas_proyecto.md) <br>
+  - Problemas de infraestructura y pitches técnicos
+  - Formación de equipos y briefing de infraestructura
+  - Qué aporto, qué busco para mi proyecto
+- Constituir los equipos: firmar acuerdo de grupo
+- ¿Trello, Excel o vamos directo a GitBook o GitHub?
 
-b. Constituir los equipos: firmar acuerdo de grupo ???????
+### 2. Planificación
 
-c. ¿TRELLO, EXCEL o nos vamos directo a GitBook o GitHub? ?????????
+**Arquitectura del sistema** (01 de octubre al 11 de octubre)
+- Definir las piezas clave o módulos que compondrán la aplicación web. Cada componente realiza funciones específicas y se integra con otros para lograr el conjunto completo de características y servicios requeridos
+- Hardware - características
+- Sistema operativo
+- Lógica de negocio. Backend
 
-### 2. PLANIFICACIÓN
+**Diseño de la aplicación web** (01 de octubre al 11 de octubre)
+- Mapa del sitio: incluir las páginas principales y sus relaciones, usando un diagrama de árbol o de flujo para visualizar la jerarquía y las conexiones entre páginas
+- Mockups: mostrar la disposición de los elementos en la interfaz, la paleta de colores, botones, menús, enlaces y demás elementos de navegación, describiendo cómo funcionan y cómo se relacionan con otras páginas o funciones
+- Objetivos o funcionalidades: definir qué, cuándo y por qué, especificando para cada uno:
+  - Objetivo
+  - Prioridades
+  - Funcionalidad
+  - Disparador
+  - Fecha de entrega
+  - Estado
 
-d. **Arquitectura del sistema** (01 de octubre al 11 de octubre)
-   iv. Definir las piezas clave o módulos que compondrán una aplicación web. Cada componente realiza funciones específicas y se integra con otros para lograr el conjunto completo de características y servicios requeridos por la aplicación.
-   v. Hardware - características
-   vi. Sistema Operativo
-   vii. Lógica de negocio. Backend
+### 3. Memoria (16 de septiembre al 20 de noviembre)
 
-e. **Diseño de la aplicación web** (01 de octubre al 11 de octubre)
-   viii. Mapa del sitio. Incluir las páginas principales y sus relaciones. Utiliza un diagrama de árbol o un diagrama de flujo para visualizar la jerarquía de las páginas y cómo se conectan entre sí.
-   ix. Mockups. Mostrar la disposición de los elementos en la interfaz de usuario y la paleta de colores. Incluir botones, menús, enlaces y otros elementos de navegación. Describir las funcionalidades de todos los elementos, o sea, cómo funcionarán los elementos de navegación y cómo se relacionan con otras páginas o funciones.
-   x. Objetivos o funcionalidades. Definir las funcionalidades u objetivos de la aplicación respondiendo a las preguntas: ¿QUÉ? ¿CUÁNDO? ¿POR QUÉ?
-      1. Objetivo
-      2. Prioridades
-      3. Funcionalidad
-      4. Disparador
-      5. Fecha de entrega
-      6. Estado
+- Gitbook / GitHub: crear un espacio de trabajo donde irá la memoria del proyecto, el código y la base de datos. Todas las actividades se redactan y entregan como parte de esa memoria, revisada cada semana
+- Diagrama de Gantt: definir un calendario detallado con los objetivos, resultados a alcanzar y requisitos técnicos (hardware y software)
 
-### 3. MEMORIA (16 de septiembre al 20 de noviembre)
+### 4. Ejecución (15 de octubre al 15 de noviembre)
 
-f. Gitbook / Github. Crear un espacio de trabajo donde irá la memoria del proyecto, código y base de datos. Todas las actividades que se orienten se redactan y entregan como parte de esa memoria que iremos revisando cada semana.
+- Diseño de la base de datos (12 de octubre)
+- Instalación, configuración y puesta a punto de Proxmox
+- Instalación y configuración de los servidores: nginx, DNS, DHCP, MySQL
+- Configuración de IPTables
+- Puesta a punto de la base de datos MySQL
+- Programación de las funcionalidades de la web
+- Actualización de la aplicación web dentro de Proxmox
 
-g. **Diagrama de Gantt**
-   xi. Definir un calendario detallado con los objetivos, resultados a alcanzar, requisitos técnicos (tanto de hardware como de software).
+### 5. Control (17 de noviembre al 20 de noviembre)
 
-### 4. EJECUCIÓN (15 de octubre al 15 de noviembre)
-
-h. Diseño de la base de datos (12 de octubre)
-i. Instalación, configuración y puesta a punto de Proxmox
-j. Instalación y configuración de los servidores: nginx, dns, dhcp, mysql
-k. Configuración de IPTables
-l. Puesta a punto de la DB de MySQL
-m. Programación de las funcionalidades de la web
-n. Actualizar la aplicación web dentro de Proxmox
-
-### 5. CONTROL (17 de noviembre al 20 de noviembre)
-
-o. Cloudflare
-p. Revisiones
-q. Preparación de la presentación
+- Cloudflare
+- Revisiones
+- Preparación de la presentación
 
 ### 6. Presentación (03 de diciembre)
 
-r. Presentaciones en el auditorio si es posible.
+- Presentaciones en el auditorio, si es posible
 
 ---
 
 ## Ejemplo de tabla para definir la arquitectura de sistema
 
-| Componente de sistema | Tecnología o framework | Versión | Puerto | Descripción de uso o requisitos | Enlace a documentación o información adicional |
+| Componente de sistema | Tecnología o framework | Versión | Puerto | Descripción de uso o requisitos | Enlace a documentación |
 |---|---|---|---|---|---|
 | Hardware | Modelo, procesador, RAM, espacio en disco, adaptadores de red | | | no | |
 | Sistema operativo | ¿Qué SO? ¿Libre o propietario? | | | no | |
 | Interfaz de usuario (Frontend) | HTML, CSS, JavaScript, bibliotecas y frameworks como React, Angular o Vue.js | | | | |
-| Lógica de negocio (Backend) | Lenguajes de programación como PHP, Python, Java, Node.js; frameworks como Django, Flask, Spring (Java), Express (Node.js) | | | | |
+| Lógica de negocio (Backend) | PHP, Python, Java, Node.js; frameworks como Django, Flask, Spring, Express | | | | |
 | Servidor web | Apache, Nginx, Microsoft IIS | | | | |
 | Base de datos | MySQL, PostgreSQL, MongoDB, Firebase, SQLite | | | | |
 | Sistema gestor de base de datos | MySQL Workbench, PHPMyAdmin, Access, Oracle SQL, MongoDB Atlas | | | | |
@@ -76,8 +72,8 @@ r. Presentaciones en el auditorio si es posible.
 
 ---
 
-## Ejemplo de tabla para definir los objetivos, prioridades, fechas de entrega, etc.
+## Ejemplo de tabla para definir objetivos, prioridades y fechas de entrega
 
-| ID | Prioridad | Objetivo | Funcionalidad | Disparador | Fecha Entrega | Estado |
+| ID | Prioridad | Objetivo | Funcionalidad | Disparador | Fecha entrega | Estado |
 |---|---|---|---|---|---|---|
-| ID1 | Alta | Registrar usuarios en la página | Deberá crearse un sistema de registro de usuarios y posterior login que guarde información individual del usuario | Un botón en la esquina superior te llevará a la pantalla de registro/login | 13/10/24 | Pendiente |
+| ID1 | Alta | Registrar usuarios en la página | Deberá crearse un sistema de registro de usuarios y posterior login que guarde información individual del usuario | Un botón en la esquina superior lleva a la pantalla de registro/login | 13/10/24 | Pendiente |
