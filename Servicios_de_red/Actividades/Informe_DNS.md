@@ -140,7 +140,7 @@ He usado el dominio `aliexpress.com` para todas las pruebas.
     * Esto demuestra que la segunda respuesta no ha ido a preguntar al servidor autoritativo, sino que la ha servido directamente de la caché de mi resolver (por eso el TTL va bajando en vez de volver a su valor inicial). Si hubiera ido de nuevo al servidor autoritativo, el TTL habría vuelto a su valor máximo original.
 
 ### 3. Trazabilidad Completa (Trace):
-* **Ejecuta el comando: dig +trace aliexpress.com**
+* **Ejecuta el comando: dig +trace aliexpress.com** <br>
     ![dig +trace aliexpress.com](../img/dig_trace.png)
     * Al hacer `+trace`, mi ordenador no pregunta directamente al DNS de siempre, sino que hace el recorrido completo: primero contacta con los **Root Servers** (representados por el punto "."), que le indican quién gestiona el TLD `.com`. Después pregunta a esos servidores del TLD `.com`, que le dicen cuáles son los servidores autoritativos concretos del dominio `aliexpress.com`. Y por último pregunta directamente a esos servidores autoritativos, que son los que finalmente le dan la IP real del dominio.
 
