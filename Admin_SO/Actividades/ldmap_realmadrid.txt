@@ -1,6 +1,24 @@
 dc=realmadrid, dc=com
  |--- ou=Departamentos
 	|--- ou=Marketing
+	|	|--- uid=usuario1
+	|	|--- uid=usuario2
 	|--- ou=RRHH
+	|	|--- uid=usuario1
+	|	|--- uid=usuario2
 	|--- ou=Finanzas
+	|	|--- uid=usuario1
+	|	|--- uid=usuario2
 	|--- ou=IT
+	|	|--- uid=usuario1
+	|	|--- uid=usuario2
+	|--- ou=CuerpoTecnico
+	|	|--- uid=usuario1
+	|	|--- uid=usuario2
+ |--- ou=Grupos
+	|--- cn=AdminsIT
+	|--- cn=EmpleadosMarketing
+	|--- cn=DireccionFinanzas
+ |--- ou=Recursos
+	|--- ou=Impresoras
+	|--- ou=Servidores
