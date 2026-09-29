@@ -18,3 +18,35 @@ dc=realmadrid, dc=com
  |--- ou=Recursos
 	|--- ou=Impresoras
 	|--- ou=Servidores
+
+## DN de cada usuario
+
+### Marketing
+```
+uid=usuario1,ou=Marketing,ou=Departamentos,dc=realmadrid,dc=com
+uid=usuario2,ou=Marketing,ou=Departamentos,dc=realmadrid,dc=com
+```
+
+### RRHH
+```
+uid=usuario3,ou=RRHH,ou=Departamentos,dc=realmadrid,dc=com
+uid=usuario4,ou=RRHH,ou=Departamentos,dc=realmadrid,dc=com
+```
+
+### Finanzas
+```
+uid=usuario5,ou=Finanzas,ou=Departamentos,dc=realmadrid,dc=com
+uid=usuario6,ou=Finanzas,ou=Departamentos,dc=realmadrid,dc=com
+```
+
+### IT
+```
+uid=usuario7,ou=IT,ou=Departamentos,dc=realmadrid,dc=com
+uid=usuario8,ou=IT,ou=Departamentos,dc=realmadrid,dc=com
+```
+
+### CuerpoTecnico
+```
+uid=usuario9,ou=CuerpoTecnico,ou=Departamentos,dc=realmadrid,dc=com
+uid=usuario10,ou=CuerpoTecnico,ou=Departamentos,dc=realmadrid,dc=com
+```
