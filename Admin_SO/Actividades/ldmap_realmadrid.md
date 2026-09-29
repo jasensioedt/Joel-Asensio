@@ -1,23 +1,25 @@
+```
 dc=realmadrid, dc=com
  |--- ou=Departamentos
-	|--- ou=Marketing
-	|	|--- uid=usuario1
-	|	|--- uid=usuario2
-	|--- ou=RRHH
-	|	|--- uid=usuario3
-	|	|--- uid=usuario4
-	|--- ou=Finanzas
-	|	|--- uid=usuario5
-	|	|--- uid=usuario6
-	|--- ou=IT
-	|	|--- uid=usuario7
-	|	|--- uid=usuario8
-	|--- ou=CuerpoTecnico
-	|	|--- uid=usuario9
-	|	|--- uid=usuario10
+ |     |--- ou=Marketing
+ |     |     |--- uid=usuario1
+ |     |     |--- uid=usuario2
+ |     |--- ou=RRHH
+ |     |     |--- uid=usuario3
+ |     |     |--- uid=usuario4
+ |     |--- ou=Finanzas
+ |     |     |--- uid=usuario5
+ |     |     |--- uid=usuario6
+ |     |--- ou=IT
+ |     |     |--- uid=usuario7
+ |     |     |--- uid=usuario8
+ |     |--- ou=CuerpoTecnico
+ |           |--- uid=usuario9
+ |           |--- uid=usuario10
  |--- ou=Recursos
-	|--- ou=Impresoras
-	|--- ou=Servidores
+       |--- ou=Impresoras
+       |--- ou=Servidores
+```
 
 ## DN de cada usuario
 
