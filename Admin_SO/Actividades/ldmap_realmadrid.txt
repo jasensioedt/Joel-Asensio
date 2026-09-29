@@ -15,10 +15,6 @@ dc=realmadrid, dc=com
 	|--- ou=CuerpoTecnico
 	|	|--- uid=usuario9
 	|	|--- uid=usuario10
- |--- ou=Grupos
-	|--- cn=AdminsIT
-	|--- cn=EmpleadosMarketing
-	|--- cn=DireccionFinanzas
  |--- ou=Recursos
 	|--- ou=Impresoras
 	|--- ou=Servidores
