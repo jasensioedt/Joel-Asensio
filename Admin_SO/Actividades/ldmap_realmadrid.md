@@ -16,9 +16,6 @@ dc=realmadrid, dc=com
  |     |--- ou=CuerpoTecnico
  |           |--- uid=usuario9
  |           |--- uid=usuario10
- |--- ou=Recursos
-       |--- ou=Impresoras
-       |--- ou=Servidores
 ```
 
 ## DN de cada usuario
