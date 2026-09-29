@@ -1,5 +1,5 @@
 ```
-dc=realmadrid, dc=com
+dc=hospitaletfc, dc=es
  |--- ou=Departamentos
  |     |--- ou=Marketing
  |     |     |--- uid=usuario1
@@ -22,30 +22,30 @@ dc=realmadrid, dc=com
 
 ### Marketing
 ```
-uid=usuario1,ou=Marketing,ou=Departamentos,dc=realmadrid,dc=com
-uid=usuario2,ou=Marketing,ou=Departamentos,dc=realmadrid,dc=com
+uid=usuario1,ou=Marketing,ou=Departamentos,dc=hospitaletfc,dc=es
+uid=usuario2,ou=Marketing,ou=Departamentos,dc=hospitaletfc,dc=es
 ```
 
 ### RRHH
 ```
-uid=usuario3,ou=RRHH,ou=Departamentos,dc=realmadrid,dc=com
-uid=usuario4,ou=RRHH,ou=Departamentos,dc=realmadrid,dc=com
+uid=usuario3,ou=RRHH,ou=Departamentos,dc=hospitaletfc,dc=es
+uid=usuario4,ou=RRHH,ou=Departamentos,dc=hospitaletfc,dc=es
 ```
 
 ### Finanzas
 ```
-uid=usuario5,ou=Finanzas,ou=Departamentos,dc=realmadrid,dc=com
-uid=usuario6,ou=Finanzas,ou=Departamentos,dc=realmadrid,dc=com
+uid=usuario5,ou=Finanzas,ou=Departamentos,dc=hospitaletfc,dc=es
+uid=usuario6,ou=Finanzas,ou=Departamentos,dc=hospitaletfc,dc=es
 ```
 
 ### IT
 ```
-uid=usuario7,ou=IT,ou=Departamentos,dc=realmadrid,dc=com
-uid=usuario8,ou=IT,ou=Departamentos,dc=realmadrid,dc=com
+uid=usuario7,ou=IT,ou=Departamentos,dc=hospitaletfc,dc=es
+uid=usuario8,ou=IT,ou=Departamentos,dc=hospitaletfc,dc=es
 ```
 
 ### CuerpoTecnico
 ```
-uid=usuario9,ou=CuerpoTecnico,ou=Departamentos,dc=realmadrid,dc=com
-uid=usuario10,ou=CuerpoTecnico,ou=Departamentos,dc=realmadrid,dc=com
+uid=usuario9,ou=CuerpoTecnico,ou=Departamentos,dc=hospitaletfc,dc=es
+uid=usuario10,ou=CuerpoTecnico,ou=Departamentos,dc=hospitaletfc,dc=es
 ```
