@@ -25,10 +25,10 @@ Aleix necesitaba un perfil más técnico. <br>
 | **Aleix** | ⭐⭐ |  | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐⭐ | <br>
 
 ### Soft skills
-| Miembro del Equipo | R | Seguridad | Sistemas | Bases de datos | Scripting | Desarrollo web | Comunicación
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Joel** | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐ | ⭐⭐ |
-| **Aleix** | ⭐⭐ |  | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ |
+| Miembro del Equipo | Organización | Comunicación | Liderazgo | Creatividad | Resolución de problemas | Adaptabilidad tecnologica |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | 
+| **Joel** | ⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | 
+| **Aleix** | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | 
 
 ## 4. Viabilidad como equipo de proyecto ASIX <br>
 
