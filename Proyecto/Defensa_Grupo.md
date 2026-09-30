@@ -22,6 +22,11 @@ Aleix necesitaba un perfil más técnico. <br>
 | **Joel** | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐ | ⭐⭐ |
 | **Aleix** | ⭐⭐ |  | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ |
 
+| Miembro del Equipo | Redes | Seguridad | Sistemas | Bases de datos | Scripting | Desarrollo web | Comunicación
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Joel** | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐ | ⭐⭐ |
+| **Aleix** | ⭐⭐ |  | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ |
+
 ## 4. Viabilidad como equipo de proyecto ASIX <br>
 
 ### ¿Porqué es adecuado este grupo? <br>
