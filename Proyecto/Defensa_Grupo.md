@@ -37,7 +37,7 @@ Aleix necesitaba un perfil más técnico. <br>
 
 ### Carencias del equipo <br>
 * Creemos que la procrastinación puede llegar a ser un problema, ya que, puede costarnos mas a la hora de realizar trabajos en casa <br>
-  y puede verse afectado en hacer entregas a ultimo momento.
+  y puede verse afectado en hacer entregas a ultimo momento. Esto lo podemos llegar a solucionar poniéndonos llamadas por la mañana o noche al llegar a casa y trabajar bien en clase.
 
 ## 4. Viabilidad como equipo de proyecto ASIX <br>
 
