@@ -21,7 +21,7 @@ Aleix necesitaba un perfil más técnico. <br>
 | **Joel** | ⭐⭐⭐ | ⭐ | ⭐⭐⭐ | ⭐ | ⭐⭐⭐ | ⭐⭐⭐ |
 | **Aleix** | ⭐ | ⭐⭐⭐ | ⭐⭐ | ⭐ | ⭐⭐⭐ | ⭐⭐⭐ |
 
-jdoiajlkdkslakllkdlkslk
+
 ## 4. Viabilidad como equipo de proyecto ASIX <br>
 
 ### ¿Porqué es adecuado este grupo? <br>
