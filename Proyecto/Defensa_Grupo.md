@@ -18,8 +18,8 @@ Aleix necesitaba un perfil más técnico. <br>
 ## 3. Mapa de competencias del equipo <br>
 | Miembro del Equipo | Redes | Seguridad | Sistemas | Bases de datos | Scripting | Desarrollo web | Comunicación
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Joel** | ⭐⭐⭐ | ⭐ | ⭐⭐⭐ | ⭐ | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ |
-| **Aleix** | ⭐ | ⭐⭐⭐ | ⭐⭐ | ⭐ | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ |
+| **Joel** | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐ | ⭐⭐ |
+| **Aleix** | ⭐⭐ |  | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ |
 
 ## 4. Viabilidad como equipo de proyecto ASIX <br>
 
