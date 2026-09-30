@@ -43,6 +43,5 @@ Aleix necesitaba un perfil más técnico. <br>
 
 ### ¿Porqué es adecuado este grupo? <br>
 
-Consideramos que el grupo seria viable porque entre los dos cubrimos los puntos flojos de la otra persona, <br>
-yo puedo cubrir partes técnicas de el proyecto, 
-
+Consideramos que el grupo seria viable ya que entre los dos cubrimos los puntos flojos de la otra persona. <br>
+Joel tiene muchos conocimientos en cuanto a nivel técnico pero carece de creatividad, mientras que Aleix en cuanto a conocimientos tecnologicos generales son los justos pero tiene buena visión creativa en cuanto a diseño y creación.
