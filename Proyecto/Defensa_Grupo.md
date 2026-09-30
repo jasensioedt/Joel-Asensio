@@ -4,10 +4,11 @@
 ## 1. Presentación del grupo <br>
 
 ### Perfil técnico principal <br>
-Joel: Fuerte en sistemas operativos servidor y redes.
-
+Joel: Fuerte en sistemas operativos servidor y redes. <br>
+Aleix: Fuerte en diseño web y creación de base de datos. <br>
 ### Soft skills clave que aporta al equipo <br>
-Joel: Resolución de problemas y adaptabilidad.
+Joel: Resolución de problemas y adaptabilidad. <br>
+Aleix: Creatividad de diseños y resolución de problemas. <br>
 
 ## 2. Justificación de la formación del equipo <br>
 
