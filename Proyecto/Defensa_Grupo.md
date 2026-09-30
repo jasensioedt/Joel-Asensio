@@ -45,3 +45,8 @@ Aleix necesitaba un perfil más técnico. <br>
 
 Consideramos que el grupo seria viable ya que entre los dos cubrimos los puntos flojos de la otra persona. <br>
 Joel tiene muchos conocimientos en cuanto a nivel técnico pero carece de creatividad, mientras que Aleix en cuanto a conocimientos tecnologicos generales son los justos pero tiene buena visión creativa en cuanto a diseño y creación.
+
+## 5. Compromisos de funcionamiento del equipo <br>
+
+* Canales de comunicación: Discord y WhatsApp
+* Reuniones de seguimiento: Haremos una reunión de seguimiento los Martes por la tarde y dejaremos un plan de trabajo para el Miércoles, el Miércoles haremos repaso de lo que hicimos el día anterior y los últimos 10 min haremos un plan de trabajo para el Jueves. El Jueves haremos el mismo proceso que el Miércoles de realizar un repaso del día de antes y los últimos min dejar tareas para hacer el próximo dia.
