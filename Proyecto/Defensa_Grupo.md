@@ -17,12 +17,15 @@ Nos encajaba según lo que buscábamos para el grupo, yo (Joel) necesitaba un pe
 Aleix necesitaba un perfil más técnico. <br>
 
 ## 3. Mapa de competencias del equipo <br>
-| Miembro del Equipo | Redes | Seguridad | Sistemas | Bases de datos | Scripting | Desarrollo web | Comunicación
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Joel** | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐ | ⭐⭐ |
-| **Aleix** | ⭐⭐ |  | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ |
 
-| Miembro del Equipo | Redes | Seguridad | Sistemas | Bases de datos | Scripting | Desarrollo web | Comunicación
+### Conocimiento técnico <br>
+| Miembro del Equipo | Redes | Seguridad | Sistemas | Bases de datos | Scripting | Desarrollo web |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Joel** | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐ |
+| **Aleix** | ⭐⭐ |  | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐⭐ | <br>
+
+### Soft skills
+| Miembro del Equipo | R | Seguridad | Sistemas | Bases de datos | Scripting | Desarrollo web | Comunicación
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **Joel** | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐ | ⭐⭐ |
 | **Aleix** | ⭐⭐ |  | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ |
