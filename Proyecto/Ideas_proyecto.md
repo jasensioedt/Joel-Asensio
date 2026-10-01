@@ -4,8 +4,8 @@ Joel Asensio y Aleix Nicolás
 
 ### Idea 1:
 * **Programa para detectar vulnerabilidades de webs**<br>
-  * La idea seria hacer un programa que analice (con autorizacion previa) el codigo de una web y
-      detecte vulnerabilidades que puedan ser atacadas por cualquiera para generar un informe, pasar el informe a alguna ia
+  * La idea seria hacer un programa o ia que analice (con autorizacion previa) el codigo de una web y
+      detecte vulnerabilidades que puedan ser atacadas por cualquiera y generar un informe, estudiar el informe 
       y que proponga soluciones tecnicas para agilizar el trabajo.<br>
 
 * **¿Como lo hariamos? (resumen con IA)**
