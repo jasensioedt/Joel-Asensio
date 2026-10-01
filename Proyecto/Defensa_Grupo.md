@@ -1,5 +1,5 @@
 
-# Defensa de grupo <br>
+# Defensa del grupo WeakScan <br>
 
 ## 1. Presentación del grupo <br>
 
