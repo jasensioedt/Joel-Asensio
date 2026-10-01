@@ -13,7 +13,7 @@ Joel Asensio y Aleix Nicolás
    * Para el análisis dinámico, lanzar peticiones HTTP automatizadas con `requests` o `httpx`, probando payloads de fuzzing típicos (SQLi, XSS reflejado, path traversal) y comparando respuestas, tiempos y códigos de               estado.
    * Guardar cada hallazgo en una estructura JSON con archivo, línea, tipo, severidad y fragmento de código relevante, evitando pasar el código completo a la IA.
    * Enviar esa estructura como prompt a un LLM para que valide la severidad, explique el vector de ataque y proponga el fix técnico, devolviendo la respuesta en JSON.
-   * Burp Suite
+   * Burp Suite, coexist AI
    * Generar el informe final en Markdown o PDF con los hallazgos y soluciones. <br>
   
 ### Idea 2:
