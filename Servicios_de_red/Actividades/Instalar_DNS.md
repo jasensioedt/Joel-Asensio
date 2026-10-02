@@ -205,7 +205,7 @@ server can't find 110.1.168.192.in-addr.arpa: NXDOMAIN
 
 **Solución:**
 
-Cambiar el registro PTR de `100` a `110` en `/etc/bind/zones/db.1.168.192`.
+Cambiar el registro PTR de `100` a `110` en `/etc/bind/zones/db.1.168.192` y reiniciar BIND9.
 
 
 
