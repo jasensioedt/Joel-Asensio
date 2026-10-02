@@ -1,23 +1,13 @@
 Joel Asensio Chavarria
-# Informe de instalación: servidor DNS con BIND9 en Ubuntu Server
+# Informe de instalación de DNS en Ubuntu server
 
 
-
-## 1. Objetivo
-
-Instalar y configurar un servidor DNS con BIND9 que:
-
-- Resuelva nombres del dominio local `myguest.virtualbox.org` (zona directa).
-- Resuelva direcciones IP de la red `192.168.1.0/24` a nombres (zona inversa).
-- Reenvíe al exterior las consultas de otros dominios mediante `forwarders`.
-- Solo atienda a clientes de la red local.
-
-## 2. Datos del entorno
+## 1. Datos del servidor
 
 | Elemento | Valor |
 |---|---|
 | Hostname | `joelubuntuserver` |
-| Interfaz NAT (Internet) | `enp0s3` (DHCP) |
+| Interfaz NAT | `enp0s3` |
 | Interfaz red interna | `enp0s8` |
 | IP estática del servidor | `192.168.1.110/24` |
 | Dominio | `myguest.virtualbox.org` |
