@@ -128,7 +128,7 @@ $TTL    604800
 @       IN      NS      joel.myguest.virtualbox.org.
 
 ; PTR Records
-100     IN      PTR     joel.myguest.virtualbox.org.
+110     IN      PTR     joel.myguest.virtualbox.org.
 ```
 
 ## 8. Configuración de resolv
@@ -183,8 +183,29 @@ El servidor responde desde `192.168.1.110#53` y resuelve `joel.myguest.virtualbo
 nslookup 192.168.1.110
 ```
 
+Resultado obtenido:
+
+```
+110.1.168.192.in-addr.arpa      name = joel.myguest.virtualbox.org.
+```
+
+La IP `192.168.1.110` se resuelve al nombre `joel.myguest.virtualbox.org`, por lo que la **zona inversa funciona correctamente**.
+
 ## 11. Problemas durante la practica
 
+### Error NXDOMAIN en la resolución inversa
+
+Al ejecutar `nslookup 192.168.1.110` apareció el siguiente error:
+
+```
+server can't find 110.1.168.192.in-addr.arpa: NXDOMAIN
+```
+
+**Causa:** el registro PTR de la zona inversa estaba definido como `100`, que corresponde a la IP `192.168.1.100`. Como la IP del servidor es `192.168.1.110`, no existía ningún registro PTR para ella.
+
+**Solución:**
+
+Cambiar el registro PTR de `100` a `110` en `/etc/bind/zones/db.1.168.192`.
 
 
 
