@@ -28,7 +28,7 @@ Instalar y configurar un servidor DNS con BIND9 que:
 
 ```bash
 sudo apt update
-sudo apt install bind9 bind9utils bind9-doc dnsutils -y
+sudo apt install bind9 
 ```
 
 ## 4. Configuración de red (Netplan)
