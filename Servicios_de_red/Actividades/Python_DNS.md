@@ -214,6 +214,3 @@ Se capturó el tráfico en la interfaz de loopback (`lo`) filtrando por `dns`. S
 
 En la petición (paquete 3) se aprecia en el panel de bytes el nombre de dominio codificado, incluyendo la cadena hexadecimal que representa el mensaje oculto.
 
-## 8. Conclusión
-
-La práctica demuestra cómo el campo de nombre de dominio de una consulta DNS puede usarse como canal encubierto para transmitir datos arbitrarios: el cliente codifica el mensaje "datos ocultos" en hexadecimal y lo incrusta como subdominio de `secreto.com`; el servidor lo recibe, lo decodifica y confirma la recepción con una respuesta DNS válida. Esta técnica (DNS exfiltration/tunneling) es habitual en ataques reales para extraer información evitando controles de firewall que normalmente no inspeccionan el tráfico DNS en profundidad.
