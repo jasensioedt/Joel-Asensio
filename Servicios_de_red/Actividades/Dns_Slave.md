@@ -1,6 +1,6 @@
 Joel Asensio Chavarria 
 ---
-# Informe: configuración de un servidor DNS esclavo (secundario) con BIND9
+# Informe: configuración de un servidor DNS con BIND9
 
 ## 1. Esquema de la arquitectura
 
@@ -210,15 +210,15 @@ El esclavo carga las zonas `1.168.192.in-addr.arpa` y `myguest.virtualbox.org` c
 
 ### 5.3 named.conf.local del master (allow-transfer)
 
-![named.conf.local del master](../img/DNS/master/named_conf_local.png)
+![named.conf.local del master](../img/DNS/master/named.conf.local_master.png)
 
 ### 5.4 named.conf.local del esclavo (zonas tipo slave)
 
-![named.conf.local del esclavo](../img/DNS/slave/named_conf_local.png)
+![named.conf.local del esclavo](../img/DNS/slave/named.conf.local.png)
 
 ### 5.5 named.conf.options del esclavo
 
-![named.conf.options del esclavo](../img/DNS/slave/named_conf_options.png)
+![named.conf.options del esclavo](../img/DNS/slave/named.conf.options.png)
 
 ### 5.6 /etc/hosts del esclavo
 
@@ -226,7 +226,7 @@ El esclavo carga las zonas `1.168.192.in-addr.arpa` y `myguest.virtualbox.org` c
 
 ### 5.7 Verificación con journalctl en el esclavo
 
-![journalctl del esclavo](../img/DNS/slave/journalctl.png)
+![journalctl del esclavo](../img/DNS/slave/comprovacion.png)
 
 ## 6. Conclusión
 
