@@ -1,6 +1,7 @@
 Joel Asensio Chavarria 
 ---
-# Informe: configuración de un servidor DNS con BIND9
+# Informe: configuración de un servidor DNS con BIND9 <br>
+He seguido la guia https://www.javiercd.es/posts/servicios/dns/bind9/dns_esclavo/dns_esclavo/
 
 ## 1. Esquema de la arquitectura
 
