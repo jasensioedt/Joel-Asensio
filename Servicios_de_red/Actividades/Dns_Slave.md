@@ -202,31 +202,31 @@ El esclavo carga las zonas `1.168.192.in-addr.arpa` y `myguest.virtualbox.org` c
 
 ### 5.1 Zona inversa en el master (con el registro del esclavo)
 
-![Zona inversa en el master](../img/dns/master/zona_inversa.png)
+![Zona inversa en el master](../img/DNS/master/zona_inversa.png)
 
 ### 5.2 Zona directa en el master (con el registro del esclavo)
 
-![Zona directa en el master](../img/dns/master/zona_directa.png)
+![Zona directa en el master](../img/DNS/master/zona_directa.png)
 
 ### 5.3 named.conf.local del master (allow-transfer)
 
-![named.conf.local del master](../img/dns/master/named_conf_local.png)
+![named.conf.local del master](../img/DNS/master/named_conf_local.png)
 
 ### 5.4 named.conf.local del esclavo (zonas tipo slave)
 
-![named.conf.local del esclavo](../img/dns/slave/named_conf_local.png)
+![named.conf.local del esclavo](../img/DNS/slave/named_conf_local.png)
 
 ### 5.5 named.conf.options del esclavo
 
-![named.conf.options del esclavo](../img/dns/slave/named_conf_options.png)
+![named.conf.options del esclavo](../img/DNS/slave/named_conf_options.png)
 
 ### 5.6 /etc/hosts del esclavo
 
-![hosts del esclavo](../img/dns/slave/hosts.png)
+![hosts del esclavo](../img/DNS/slave/hosts.png)
 
 ### 5.7 Verificación con journalctl en el esclavo
 
-![journalctl del esclavo](../img/dns/slave/journalctl.png)
+![journalctl del esclavo](../img/DNS/slave/journalctl.png)
 
 ## 6. Conclusión
 
