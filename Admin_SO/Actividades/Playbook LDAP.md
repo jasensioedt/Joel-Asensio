@@ -38,7 +38,6 @@ dc=planetafp, dc=es
  |           |--- uid=hcampos (Profesor Inglés)
  |--- ou=GestionFCT
        |--- ou=RelacionesEmpresa
-
        |     |--- uid=ibenitez
        |     |--- uid=jflores
        |--- ou=TutoresFCT
