@@ -31,12 +31,6 @@ dc=planetafp, dc=es
  |     |--- ou=Sanidad
  |     |     |--- uid=sramos (Tutor Higiene Bucodental)
  |     |     |--- uid=cgil (Tutor TCAE)
- |     |--- ou=Sociocultural
- |     |     |--- uid=eblanco (Tutor Integración Social)
- |     |     |--- uid=fprat (Tutor Ed. Infantil)
- |     |--- ou=Transversales
- |           |--- uid=gsoler (Profesor FOL/IPE)
- |           |--- uid=hcampos (Profesor Inglés)
  |--- ou=GestionFCT
        |--- ou=RelacionesEmpresa
        |     |--- uid=ibenitez
