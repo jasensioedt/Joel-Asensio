@@ -1,4 +1,4 @@
-'''
+```
 
 dc=planetafp, dc=es
  |--- ou=DireccionAcademica
@@ -44,5 +44,5 @@ dc=planetafp, dc=es
        |--- ou=TutoresFCT
              |--- uid=kpuig
              |--- uid=lmora
-'''
+```
 
