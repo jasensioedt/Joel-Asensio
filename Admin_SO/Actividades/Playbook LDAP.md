@@ -1,4 +1,5 @@
 '''
+
 dc=planetafp, dc=es
  |--- ou=DireccionAcademica
 
@@ -44,3 +45,4 @@ dc=planetafp, dc=es
              |--- uid=kpuig
              |--- uid=lmora
 '''
+
