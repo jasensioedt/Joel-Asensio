@@ -1,4 +1,4 @@
-# Playbook de Despliegue Técnico: OpenLDAP en Ubuntu
+# Playbook de Despliegue Técnico: LDAP en Ubuntu
 
 ## 1. Ficha Técnica y Prerrequisitos del Entorno
 
