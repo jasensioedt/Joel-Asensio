@@ -1,8 +1,8 @@
 # Playbook de Despliegue Técnico: OpenLDAP en Ubuntu
 
-## A. Ficha Técnica y Prerrequisitos del Entorno
+## 1. Ficha Técnica y Prerrequisitos del Entorno
 
-### A.1 Tabla resumen
+### 1.1 Tabla resumen
 
 | | |
 |---|---|
@@ -16,69 +16,38 @@
 
 Red NAT creada en VirtualBox, sin DHCP:
 
-![Red NAT en VirtualBox](./img/Playbook/crear_nat.png)
+![Red NAT en VirtualBox](../img/Playbook/crear_nat.png)
 
-Versión del sistema operativo:
+### 1.2 Descripción del servicio
 
-![Versión del SO](lsb_release.png)
+LDAP es un servicio de directorio. Sirve para guardar información (usuarios, grupos, equipos...) en un sitio central, ordenada en forma de árbol. Ese árbol se llama DIT (Directory Information Tree). Está pensado para leer datos rápido y se usa mucho para que los usuarios se autentiquen.
 
-### A.2 Descripción del servicio
+Cada entrada del árbol se identifica con su DN, que es la ruta completa hasta ella. Por ejemplo: `uid=jmartinez,ou=DireccionAcademica,dc=planetafp,dc=local`.
 
-LDAP es un servicio de directorio. Guarda la información (usuarios, grupos, equipos...) ordenada en forma de árbol, el DIT (Directory Information Tree), de forma parecida a las antiguas páginas amarillas. Está pensado para consultar datos muy rápido y para que muchas aplicaciones usen la misma fuente de información, por ejemplo para autenticar usuarios.
+Los componentes principales son:
 
-Cada entrada del árbol se identifica con un DN (nombre distinguido), que es su ruta completa. Por ejemplo: `uid=jmartinez,ou=DireccionAcademica,dc=planetafp,dc=local`.
-
-Componentes principales:
-
-- **slapd:** el demonio del servidor LDAP. Es el programa que se queda funcionando y responde a las consultas.
-- **ldap-utils:** los programas cliente para trabajar con el directorio, como `ldapsearch`, `ldapadd`, `ldapdelete` o `ldapmodify`.
-- **libldap:** las bibliotecas que implementan el protocolo LDAP (junto con liblber).
+- **slapd:** es el servidor LDAP, el programa que se queda funcionando y responde a las consultas.
+- **ldap-utils:** los comandos para trabajar con el directorio, como `ldapsearch`, `ldapadd`, `ldapdelete` o `ldapmodify`.
+- **libldap:** las bibliotecas que hacen que el protocolo LDAP funcione.
 
 ---
 
-## B. Procedimiento de Despliegue Paso a Paso
+## 2. Procedimiento de Despliegue Paso a Paso
 
 ### Paso 1. Configuración de red estática
 
-El servidor necesita siempre la misma IP para que los clientes lo encuentren, así que se desactiva DHCP y se define la IP a mano en Netplan.
-
-```
-sudo nano /etc/netplan/50-cloud-init.yaml
-```
-
-```yaml
-network:
-  version: 2
-  ethernets:
-    enp0s3:
-      dhcp4: false
-      addresses:
-        - 20.0.0.5/24
-      routes:
-        - to: default
-          via: 20.0.0.1
-      nameservers:
-        addresses:
-          - 8.8.8.8
-```
-
-```
-sudo chmod 600 /etc/netplan/*.yaml
-sudo netplan apply
-ip a
-```
-
+Lo primero es ponerle una IP fija al servidor. Si la IP cambiara, los clientes no lo encontrarían, así que desactivo el DHCP y escribo la IP a mano en Netplan. 
 Fichero de Netplan:
 
-![Fichero Netplan](netplan.png)
+![Fichero Netplan](../img/Playbook/netplan.png)
 
-Aplicación y comprobación de la IP:
+Aplico los cambios y miro que la IP ha cambiado:
 
-![netplan apply e ip a](netplan_ip.png)
+![netplan apply e ip a](../img/Playbook/netplan_apply.png)
 
 ### Paso 2. Resolución de nombres local
 
-Se añade una línea en `/etc/hosts` que une la IP con el FQDN y el alias. Es necesaria para poder llamar al servidor por su nombre sin depender de un servidor DNS.
+Añado una línea en `/etc/hosts` para poder llamar al servidor por su nombre (`ldapserver.planetafp.local` o solo `ldapserver`) en vez de usar la IP. Así no hace falta tener un servidor DNS.
 
 ```
 sudo nano /etc/hosts
@@ -90,15 +59,15 @@ Línea añadida:
 20.0.0.5    ldapserver.planetafp.local    ldapserver
 ```
 
-![Fichero hosts](hosts.png)
+![Fichero hosts](../img/Playbook/hosts.png)
 
-Comprobación de que el nombre resuelve:
+Para comprobar que funciona, hago un ping al nombre:
 
 ```
 ping -c 4 ldapserver.planetafp.local
 ```
 
-![Ping al FQDN](ping.png)
+![Ping al FQDN](../img/Playbook/ping.png)
 
 ### Paso 3. Instalación de software
 
@@ -109,7 +78,7 @@ sudo apt install slapd ldap-utils -y
 
 ### Paso 4. Reconfiguración del servicio
 
-Al instalar, slapd se configura con valores por defecto. Con `dpkg-reconfigure` se vuelve a configurar con los datos de la práctica.
+Al instalar, slapd se configura solo con valores por defecto, y no son los que necesito. Por eso lo vuelvo a configurar con `dpkg-reconfigure`, poniendo el dominio y la organización de la práctica.
 
 ```
 sudo dpkg-reconfigure slapd
@@ -120,63 +89,62 @@ sudo dpkg-reconfigure slapd
 | ¿Omitir la configuración del servidor OpenLDAP? | No |
 | Nombre de dominio DNS | planetafp.local |
 | Nombre de la organización | planetafp |
-| Contraseña de administrador | La elegida (no se muestra) |
 | ¿Borrar la base de datos al purgar slapd? | No |
-| ¿Mover la base de datos antigua? | Yes |
+| ¿Mover la base de datos antigua? | Si |
 
 Nombre de dominio:
 
-![Dominio](dominio.png)
+![Dominio](../img/Playbook/dominio.png)
 
 Organización:
 
-![Organización](organizacion.png)
+![Organización](../img/Playbook/organizacion.png)
 
 Borrar la base de datos al purgar:
 
-![Borrar BD](borrar_bd.png)
+![Borrar BD](../img/Playbook/borrar_bd.png)
 
 Mover la base de datos antigua:
 
-![Mover BD](mover_bd.png)
+![Mover BD](../img/Playbook/mover_bd.png)
 
 ---
 
-## C. Verificación y Comprobación
+## 3. Verificación y Comprobación
 
-### C.1 Estado del demonio
+### 3.1 Estado del demonio
+
+Compruebo que slapd está funcionando. Tiene que salir `active (running)`.
 
 ```
 sudo systemctl status slapd
 ```
 
-El servicio aparece como `active (running)`:
+![Estado de slapd](../img/Playbook/status_ldap.png)
 
-![Estado de slapd](status_slapd.png)
+### 3.2 Esquemas del sistema
 
-### C.2 Esquemas del sistema
-
-No hay que configurar ningún esquema, ya vienen con slapd. Se comprueba que están presentes:
+Los esquemas no hay que configurarlos, ya vienen con slapd. Solo miro que están. 
 
 ```
 ls /etc/ldap/schema
 ```
 
-Se ven, entre otros, `core.schema`, `cosine.schema`, `inetorgperson.schema` y `nis.schema`:
-
-![Esquemas del sistema](esquemas.png)
+![Esquemas del sistema](../img/Playbook/esquemas.png)
 
 ---
 
-## D. Población del Directorio y Operaciones Básicas
+## 4. Población del Directorio y Operaciones Básicas
 
 ### Estructura prevista del directorio
+
+Este es el árbol que tengo en el directorio:
 
 ```
 dc=planetafp,dc=local
 ├── ou=DireccionAcademica
-│   ├── uid=jmartinez (Director Pedagógico)
-│   └── uid=mgarcia (Jefa de Estudios)
+│   ├── uid=jmartinez
+│   └── uid=mgarcia
 ├── ou=Departamentos
 │   ├── ou=Adisiones
 │   │   ├── uid=lperez
@@ -192,14 +160,14 @@ dc=planetafp,dc=local
 │       └── uid=anavarro
 ├── ou=AreasFormativas
 │   ├── ou=Informatica
-│   │   ├── uid=aruiz (Tutor DAM)
-│   │   └── uid=dortega (Tutor DAW)
+│   │   ├── uid=aruiz
+│   │   └── uid=dortega
 │   ├── ou=Empresa
-│   │   ├── uid=jmolina (Tutor Admin y Finanzas)
-│   │   └── uid=mvazquez (Tutor Marketing)
+│   │   ├── uid=jmolina
+│   │   └── uid=mvazquez
 │   └── ou=Sanidad
-│       ├── uid=sramos (Tutor Higiene Bucodental)
-│       └── uid=cgil (Tutor TCAE)
+│       ├── uid=sramos
+│       └── uid=cgil
 └── ou=GestionFCT
     ├── ou=RelacionesEmpresa
     │   ├── uid=ibenitez
@@ -209,109 +177,81 @@ dc=planetafp,dc=local
         └── uid=lmora
 ```
 
-El LDIF de prueba de este playbook crea la unidad `DireccionAcademica` y el usuario `jmartinez`, que es la primera rama del árbol.
+### 4.1 Fichero LDIF
 
-### D.1 Fichero LDIF
+Un LDIF es un fichero de texto con las entradas del directorio. Cada entrada empieza por el `dn`.
 
-Un LDIF es un fichero de texto con las entradas del directorio: primero el `dn`, después sus atributos, y una línea en blanco entre una entrada y otra.
-
-La entrada del dominio `dc=planetafp,dc=local` ya la creó `dpkg-reconfigure`, por eso está comentada en el fichero. El LDIF crea una unidad organizativa y un usuario:
+El dominio `dc=planetafp,dc=local` ya lo creó `dpkg-reconfigure`, así que lo dejo comentado para que no dé error. El fichero crea una unidad organizativa y un usuario.
 
 ```
 nano ldif/usuarios.ldif
 ```
 
-```
-# Crear OUs y usuarios
+![Fichero LDIF](../img/Playbook/ldif.png)
 
-# Definir dominio
+### 4.2 Inserción con ldapadd
 
-#dn: dc=planetafp,dc=local
-#objectclass: top
-#objectclass: domain
-#dc: planetafp
-
-# Direccion Academica
-
-dn: ou=DireccionAcademica,dc=planetafp,dc=local
-objectClass: organizationalUnit
-objectClass: top
-ou: DireccionAcademica
-
-dn: uid=jmartinez,ou=DireccionAcademica,dc=planetafp,dc=local
-objectClass: inetOrgPerson
-objectClass: posixAccount
-objectClass: top
-cn: Javier Martinez
-sn: Martinez
-uid: jmartinez
-uidNumber: 10001
-gidNumber: 5000
-homeDirectory: /home/jmartinez
-```
-
-![Fichero LDIF](ldif.png)
-
-### D.2 Inserción con ldapadd
+Añado las entradas al directorio con este comando:
 
 ```
 sudo ldapadd -x -D "cn=admin,dc=planetafp,dc=local" -W -f ldif/usuarios.ldif
 ```
 
 - `-x`: autenticación simple
-- `-D`: DN del usuario con el que se hace el bind (el administrador)
-- `-W`: pide la contraseña
-- `-f`: carga las entradas desde el fichero
+- `-D`: el usuario con el que me conecto (el administrador)
+- `-W`: me pide la contraseña
+- `-f`: coge las entradas del fichero
 
-![ldapadd](ldapadd.png)
+![ldapadd](../img/Playbook/ldapadd.png)
 
-### D.3 Consulta con ldapsearch
+### 4.3 Consulta con ldapsearch
+
+Para comprobar que las entradas están dentro, busco todas y pido que solo me enseñe el DN:
 
 ```
-ldapsearch -x -b "dc=planetafp,dc=local" -s sub "(uid=jmartinez)"
+ldapsearch -x -b "dc=planetafp,dc=local" -s sub "(objectclass=*)" dn"
 ```
 
-- `-b`: base desde donde empieza la búsqueda
-- `-s sub`: ámbito, busca en la base y en todo lo que cuelga de ella
-- `(uid=jmartinez)`: filtro, la entrada que se busca
+- `-b`: desde dónde empieza a buscar
+- `-s sub`: busca en esa base y en todo lo que hay por debajo
+- `(objectclass=*)`: el filtro, coge todas las entradas porque todas tienen objectClass
+-  `dn`: solo muestra el DN de cada entrada, no el resto de atributos
 
-![ldapsearch](ldapsearch.png)
-
-Árbol del directorio:
-
-![Árbol LDAP](arbol_ldap.png)
+![Árbol LDAP](../img/Playbook/arbol_ldap.png)
 
 ---
 
-## E. Control de Errores y Troubleshooting
+## 5. Control de Errores y Troubleshooting
 
 ### Error 1. ldapadd: la entrada ya existe
 
-Al cargar el LDIF por primera vez, con la entrada del dominio sin comentar:
+Al cargar el LDIF por primera vez, con la entrada del dominio sin comentar, salió esto:
 
 ```
 adding new entry "dc=planetafp,dc=local"
 ldap_add: Already exists (68)
 ```
 
-![Error Already exists](error1_ldap.png)
+![Error Already exists](../img/Playbook/error1.png)
 
-**Causa:** el LDIF intentaba crear `dc=planetafp,dc=local`, pero esa entrada ya la había creado `dpkg-reconfigure slapd`. No se puede añadir dos veces un mismo DN, y `ldapadd` se para en el primer fallo.
+**Causa:** el LDIF intentaba crear `dc=planetafp,dc=local`, pero ya existía porque lo creó `dpkg-reconfigure` al configurar el dominio. No se puede añadir dos veces la misma entrada, y `ldapadd` se para en el primer error, así que no llegó a crear nada más.
 
-**Solución:** comentar con `#` las líneas de la entrada del dominio en el LDIF y volver a ejecutar el mismo `ldapadd`. Así solo se crean la unidad organizativa y el usuario.
+**Solución:** comentar con `#` las líneas del dominio en el LDIF y volver a ejecutar el mismo `ldapadd`. Así solo crea la unidad organizativa y el usuario.
 
 ### Error 2. Netplan: la ruta no tiene `via`
 
-Al aplicar la configuración de red:
+Al aplicar la configuración de red salió esto:
 
 ```
 Error in network definition: global unicast route must include both a 'to' and 'via' IP
 - to: default
 ```
 
-**Causa:** la ruta por defecto tenía `to: default` pero le faltaba la línea `via:` con la puerta de enlace, o estaba mal alineada.
+![Error Netplan](../img/Playbook/error2_ldap.png)
 
-**Solución:** añadir `via: 20.0.0.1` justo debajo de `to: default`, con la misma indentación, y volver a aplicar:
+**Causa:** puse `via:` con un guion delante (`- via:`). Así YAML lo toma como una ruta nueva, y entonces `- to: default` se queda sin `via`, y la otra ruta sin `to`. Una ruta necesita las dos cosas en la misma entrada.
+
+**Solución:** borrar el `-` de delante de `via:` y volver a aplicar Netplan:
 
 ```
 sudo netplan apply
