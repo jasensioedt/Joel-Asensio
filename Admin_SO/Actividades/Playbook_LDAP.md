@@ -8,7 +8,7 @@
 |---|---|
 | Topología de red | Red NAT `NatJoel` (20.0.0.0/24) con DHCP deshabilitado |
 | Sistema operativo | Ubuntu Desktop 24.04 LTS |
-| Dirección IP | 20.0.0.5/24 (estática, Netplan) |
+| Dirección IP | 20.0.0.5/24 |
 | FQDN | ldapserver.planetafp.local |
 | Dominio del directorio (DIT) | planetafp.local (`dc=planetafp,dc=local`) |
 | Organización | planetafp |
