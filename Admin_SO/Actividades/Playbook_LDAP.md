@@ -36,7 +36,7 @@ Los componentes principales son:
 
 ### Paso 1. Configuración de red estática
 
-Lo primero es ponerle una IP fija al servidor. Si la IP cambiara, los clientes no lo encontrarían, así que desactivo el DHCP y escribo la IP a mano en Netplan. 
+Lo primero es ponerle una IP fija al servidor. Si la IP cambiara, los clientes no lo encontrarían, así que desactivo el DHCP y escribo la IP a mano en Netplan. <br>
 Fichero de Netplan:
 
 ![Fichero Netplan](../img/Playbook/netplan.png)
@@ -136,7 +136,7 @@ ls /etc/ldap/schema
 
 ## 4. Población del Directorio y Operaciones Básicas
 
-### Estructura prevista del directorio
+### Estructura del directorio
 
 Este es el árbol que tengo en el directorio:
 
@@ -181,7 +181,7 @@ dc=planetafp,dc=local
 
 Un LDIF es un fichero de texto con las entradas del directorio. Cada entrada empieza por el `dn`.
 
-El dominio `dc=planetafp,dc=local` ya lo creó `dpkg-reconfigure`, así que lo dejo comentado para que no dé error. El fichero crea una unidad organizativa y un usuario.
+El dominio `dc=planetafp,dc=local` ya lo creó `dpkg-reconfigure`, así que lo dejo comentado para que no dé error. El fichero ahora solo crea unidades organizativas y usuarios.
 
 ```
 nano ldif/usuarios.ldif
@@ -232,7 +232,7 @@ adding new entry "dc=planetafp,dc=local"
 ldap_add: Already exists (68)
 ```
 
-![Error Already exists](../img/Playbook/error1.png)
+![Error Already exists](../img/Playbook/error1_ldap.png)
 
 **Causa:** el LDIF intentaba crear `dc=planetafp,dc=local`, pero ya existía porque lo creó `dpkg-reconfigure` al configurar el dominio. No se puede añadir dos veces la misma entrada, y `ldapadd` se para en el primer error, así que no llegó a crear nada más.
 
@@ -247,7 +247,7 @@ Error in network definition: global unicast route must include both a 'to' and '
 - to: default
 ```
 
-![Error Netplan](../img/Playbook/error2_ldap.png)
+![Error Netplan](../img/Playbook/error2.png)
 
 **Causa:** puse `via:` con un guion delante (`- via:`). Así YAML lo toma como una ruta nueva, y entonces `- to: default` se queda sin `via`, y la otra ruta sin `to`. Una ruta necesita las dos cosas en la misma entrada.
 
