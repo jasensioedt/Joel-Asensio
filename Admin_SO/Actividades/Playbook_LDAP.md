@@ -209,7 +209,7 @@ sudo ldapadd -x -D "cn=admin,dc=planetafp,dc=local" -W -f ldif/usuarios.ldif
 Para comprobar que las entradas están dentro, busco todas y pido que solo me enseñe el DN:
 
 ```
-ldapsearch -x -b "dc=planetafp,dc=local" -s sub "(objectclass=*)" dn"
+ldapsearch -x -b "dc=planetafp,dc=local" -s sub "(objectclass=*)" dn
 ```
 
 - `-b`: desde dónde empieza a buscar
