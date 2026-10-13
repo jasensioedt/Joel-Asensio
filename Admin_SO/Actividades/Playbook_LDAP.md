@@ -37,6 +37,18 @@ Los componentes principales son:
 ### Paso 1. Configuración de red estática
 
 Lo primero es ponerle una IP fija al servidor. Si la IP cambiara, los clientes no lo encontrarían, así que desactivo el DHCP y escribo la IP a mano en Netplan. <br>
+El nombre del fichero de configuración de Netplan puede cambiar según la instalación. En mi caso es `50-cloud-init.yaml`, pero en otros equipos puede ser `00-installer-config.yaml` o parecido. Para ver cuál tengo:
+
+```
+ls /etc/netplan
+```
+
+Lo edito con:
+
+```
+sudo nano /etc/netplan/50-cloud-init.yaml
+```
+
 Fichero de Netplan:
 
 ![Fichero Netplan](../img/Playbook/netplan.png)
