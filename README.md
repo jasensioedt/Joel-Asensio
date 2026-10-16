@@ -19,3 +19,11 @@
 ## Proyecto
 
 - [LinkSight - Plataforma de auditoría de vulnerabilidades web](https://github.com/jasensioedt/LinkSight)
+---
+
+## Autor
+
+**Joel Asensio Chavarría**
+
+- GitHub: https://github.com/jasensioedt
+- Ciclo: Administración de Sistemas Informáticos en Red (ASIR)
