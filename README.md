@@ -76,6 +76,4 @@ Plataforma de auditoría de vulnerabilidades web.
 
 <div align="center">
 
-✨ *Gracias por visitar mi repositorio* ✨
-
 </div>
