@@ -1,90 +1,93 @@
-# Copias incrementales con `rsync`
+# Copias de seguridad con `rsync`
 
-En esta actividad hago una copia de unos archivos con `rsync`. Después cambio un archivo y vuelvo a copiar para comprobar que el destino se actualiza.
+Una copia de seguridad (backup) es un duplicado de los datos que permite recuperarlos si se pierden, se borran o se estropean. Puede ser completa (full), que copia todo, o incremental, que solo copia lo que ha cambiado desde la última vez, con lo que ahorra tiempo y espacio.
 
-Los comandos que pongo son ejemplos. No puedo confirmar que sean los mismos que salen en las capturas, así que revisa las rutas y los nombres antes de entregarlo.
+`rsync` es una herramienta de Linux pensada para sincronizar y copiar ficheros, tanto en local como entre equipos por red a través de SSH. Es muy usada para backups porque solo transfiere las diferencias entre origen y destino y puede conservar permisos, usuarios y fechas de los ficheros.
 
-## Crear un archivo de prueba
+## Crear los archivos de prueba
 
-En esta captura creo un archivo vacío con `touch`. Lo usaré para probar la copia.
+Creo las carpetas `origen` y `destino`, y dentro de origen creo 10 ficheros con `touch`.
 
-![Creación del archivo de prueba](../img/touch.png)
-
-```bash
-mkdir -p origen destino
-touch origen/archivo_prueba.txt
-```
-
-## Revisar el origen
-
-Aquí miro qué archivos hay en el origen antes de copiarlos.
-
-![Archivos del origen](../img/origen.png)
+![Creación de los archivos de prueba](../img/touch.png)
 
 ```bash
-ls -la origen/
+mkdir origen
+mkdir destino
+cd origen
+touch file{1..10}
 ```
 
-## Revisar el destino
+## Primera copia (backup full)
 
-En esta captura compruebo qué hay en el destino antes de hacer la copia.
+Copio el contenido de origen en destino. Con `-a` se conservan permisos, usuarios y fechas, `-v` muestra los archivos que procesa, `-z` comprime durante la transferencia y `-h` muestra los tamaños de forma más clara. Como es la primera vez, copia todos los ficheros.
 
-![Archivos del destino](../img/destino.png)
+![Primera copia](../img/copia_completa.png)
 
 ```bash
-ls -la destino/
+rsync -avzh origen/ destino/
 ```
 
-## Hacer la copia
+## Con barra y sin barra
 
-Ahora copio los archivos del origen al destino. Con `-a` se conservan permisos y fechas, `-v` muestra los archivos que procesa y `-h` muestra los tamaños de forma más clara.
+No es lo mismo poner `origen/` que `origen`. Con barra copia solo el contenido de la carpeta. Sin barra copia la carpeta entera, y dentro de destino se crea una carpeta nueva llamada `origen`.
 
-![Primera copia incremental](../img/copia_incremental.png)
+![Copia sin barra](../img/copia_sin_barra.png)
+![Destino con la carpeta origen](../img/destino_sin_barra.png)
 
 ```bash
-rsync -avh origen/ destino/
+rsync -avzh origen destino/
+ls destino
 ```
 
-En esta otra captura se ve una segunda ejecución o la comprobación de la copia.
+## Copia incremental
 
-![Segunda captura de la copia incremental](../img/copia_incremental2.png)
+Escribo algo en `file1` y creo el fichero `prueba`. Al volver a ejecutar `rsync`, solo transfiere esos dos ficheros, que son los que han cambiado. Rsync compara el tamaño y la fecha de modificación, y por eso funciona como copia incremental. Con `cat` compruebo que el cambio se ha copiado al destino.
+
+![Copia incremental](../img/copia_incremental.png)
 
 ```bash
-rsync -avh --itemize-changes origen/ destino/
+echo "prueba backup" > origen/file1
+rsync -avzh origen/ destino/
+cat destino/file1
 ```
 
-## Comprobar los cambios
+## Comprobar atributos y usuarios
 
-Cambio el contenido de un archivo y vuelvo a ejecutar `rsync`. Así puedo comprobar que el destino recibe la modificación.
+Comparo origen y destino con `ls -l`. Los permisos (`-rw-rw-r--`), el tamaño, la fecha de modificación y el usuario (`joel joel`) son iguales en los dos, gracias a la opción `-a`. En destino también aparece la carpeta `origen` que se creó al copiar sin barra.
 
-![Cambios en la copia incremental](../img/cambios_incremental.png)
+![Comprobación de atributos](../img/comprobar_permisos.png)
 
 ```bash
-echo "Cambio de prueba" >> origen/archivo_prueba.txt
-rsync -avh --itemize-changes origen/ destino/
-cat destino/archivo_prueba.txt
+ls -l origen
+ls -l destino
 ```
 
-## Comprobar los permisos
+## Recuperar el contenido
 
-En esta captura reviso los permisos del archivo en el origen y en el destino. Uso `stat` para verlos.
-
-![Comprobación de permisos](../img/comprobar_permisos.png)
-
-```bash
-stat -c '%A (%a) %n' origen/archivo_prueba.txt destino/archivo_prueba.txt
-```
-
-## Recuperar el archivo
-
-Por último, copio el archivo del destino a una carpeta de recuperación y miro su contenido.
+Para recuperar el contenido invierto el origen y el destino. Con `ls` compruebo que vuelve todo a origen, incluidos `prueba` y la carpeta `origen` que había en destino.
 
 ![Recuperación del contenido](../img/recuperar_contenido.png)
 
 ```bash
-mkdir -p recuperacion
-cp -a destino/archivo_prueba.txt recuperacion/
-cat recuperacion/archivo_prueba.txt
+rsync -avzh destino/ origen/
+ls origen
 ```
 
-Con esta práctica compruebo que `rsync` copia los archivos y actualiza los cambios. También reviso los permisos y recupero un archivo desde el destino.
+## Copia por red a un equipo remoto
+
+Envío los ficheros a otro equipo (IP `20.0.0.5`) usando SSH. La primera vez pregunta si confío en la clave del host (fingerprint) y la guarda en la lista de equipos conocidos. Después pide la contraseña del usuario remoto y hace la copia.
+
+![Copia por red](../img/copia_red.png)
+
+```bash
+rsync -avz origen/ joel@20.0.0.5:/home/joel/destino
+```
+
+## Recuperación por red
+
+Para recuperar los datos desde el equipo remoto tiene que estar instalado el servidor SSH en ese equipo. El comando es el mismo que en local, pero indicando el usuario y la IP del equipo remoto como origen.
+
+```bash
+sudo apt install openssh-server
+rsync -avzh joel@20.0.0.5:/home/joel/destino/ origen/
+```
