@@ -21,7 +21,7 @@ touch file{1..10}
 
 Copio el contenido de origen en destino. Con `-a` se conservan permisos, usuarios y fechas, `-v` muestra los archivos que procesa, `-z` comprime durante la transferencia y `-h` muestra los tamaños de forma más clara. Como es la primera vez, copia todos los ficheros.
 
-![Primera copia](../img/copia_completa.png)
+![Primera copia](../img/copia_incremental.png)
 
 ```bash
 rsync -avzh origen/ destino/
@@ -31,8 +31,7 @@ rsync -avzh origen/ destino/
 
 No es lo mismo poner `origen/` que `origen`. Con barra copia solo el contenido de la carpeta. Sin barra copia la carpeta entera, y dentro de destino se crea una carpeta nueva llamada `origen`.
 
-![Copia sin barra](../img/copia_sin_barra.png)
-![Destino con la carpeta origen](../img/destino_sin_barra.png)
+![Copia sin barra](../img/copia_incremental2.png)
 
 ```bash
 rsync -avzh origen destino/
@@ -43,7 +42,7 @@ ls destino
 
 Escribo algo en `file1` y creo el fichero `prueba`. Al volver a ejecutar `rsync`, solo transfiere esos dos ficheros, que son los que han cambiado. Rsync compara el tamaño y la fecha de modificación, y por eso funciona como copia incremental. Con `cat` compruebo que el cambio se ha copiado al destino.
 
-![Copia incremental](../img/copia_incremental.png)
+![Copia incremental](../img/cambios_incremental.png)
 
 ```bash
 echo "prueba backup" > origen/file1
@@ -77,7 +76,6 @@ ls origen
 
 Envío los ficheros a otro equipo (IP `20.0.0.5`) usando SSH. La primera vez pregunta si confío en la clave del host (fingerprint) y la guarda en la lista de equipos conocidos. Después pide la contraseña del usuario remoto y hace la copia.
 
-![Copia por red](../img/copia_red.png)
 
 ```bash
 rsync -avz origen/ joel@20.0.0.5:/home/joel/destino
