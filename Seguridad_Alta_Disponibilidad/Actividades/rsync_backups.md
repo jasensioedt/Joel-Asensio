@@ -1,66 +1,93 @@
-# Copias de seguridad incrementales con `rsync`
+# Actividad: copias de seguridad incrementales con `rsync`
 
-Esta actividad documenta el proceso de preparación, ejecución y comprobación de copias de seguridad incrementales con `rsync`. Las capturas de la carpeta `img/` sirven como evidencia visual de cada paso.
+## Introducción
 
-## Objetivo
+En esta actividad utilizo `rsync` para copiar archivos de un directorio de origen a otro de destino. Después hago cambios en el origen y vuelvo a ejecutar la copia para comprobar que el destino se actualiza. También reviso los permisos y compruebo que puedo recuperar un archivo.
 
-Crear una copia de los datos de un directorio de origen en un destino, repetir la copia tras realizar cambios y comprobar tanto los archivos como sus permisos. Una copia incremental actualiza el destino con los cambios detectados, evitando tener que volver a copiar sin necesidad todos los datos.
+> **Importante:** Los comandos de abajo son ejemplos coherentes con el nombre y el propósito de cada captura. Cambia las rutas, los nombres de archivo y el usuario por los que aparecen en tu práctica. En los comandos con `origen/` y `destino/`, se supone que ambos directorios están en la carpeta actual.
 
-## Evidencias
+## 1. Crear un archivo de prueba
 
-### 1. Preparar un archivo de prueba
+En esta captura se muestra la creación de un archivo vacío con `touch`. Sirve para tener un archivo de prueba que después se pueda copiar y localizar en el destino.
 
-La captura muestra la creación o manipulación de un archivo de prueba mediante `touch`. Este archivo permite verificar que los cambios realizados en el origen se reflejan en la copia.
+```bash
+mkdir -p origen destino
+cd origen
+touch archivo_prueba.txt
+cd ..
+```
 
-![Creación de un archivo de prueba con touch](../img/touch.png)
+## 2. Comprobar el directorio de origen
 
-### 2. Revisar el directorio de origen
+Aquí reviso los archivos que hay en el origen antes de hacer la copia. `ls -la` muestra también los archivos ocultos y los permisos.
 
-Se inspecciona el contenido que se utilizará como fuente de la copia. Esta comprobación permite identificar los archivos que deben aparecer posteriormente en el destino.
+```bash
+ls -la origen/
+```
 
-![Contenido del directorio de origen](../img/origen.png)
+## 3. Comprobar el directorio de destino
 
-### 3. Revisar el directorio de destino
+Esta captura permite ver el estado inicial del destino. Si está vacío, todavía no contiene los archivos del origen.
 
-Se comprueba el directorio que recibirá los datos. Comparar su contenido antes y después de la operación permite verificar el resultado de la copia.
+```bash
+ls -la destino/
+```
 
-![Contenido del directorio de destino](../img/destino.png)
+## 4. Hacer la primera copia con `rsync`
 
-### 4. Realizar la copia incremental
+En esta parte copio el contenido del directorio de origen al destino. Las opciones `-a` conservan atributos como permisos y fechas, `-v` muestra los archivos procesados y `-h` presenta los tamaños de forma legible.
 
-La primera captura de esta fase documenta la ejecución de la copia incremental con `rsync`.
+```bash
+rsync -avh origen/ destino/
+```
 
-![Ejecución de una copia incremental](../img/copia_incremental.png)
+La barra final de `origen/` indica que se copia el contenido del directorio. Después compruebo que el archivo está en el destino:
 
-La siguiente captura aporta una segunda evidencia de la copia incremental, por ejemplo, su repetición o la comprobación de su resultado.
+```bash
+ls -la destino/
+```
 
-![Segunda captura de la copia incremental](../img/copia_incremental2.png)
+## 5. Volver a ejecutar la copia incremental
 
-### 5. Comprobar los cambios incrementales
+La captura documenta otra ejecución de `rsync`. Si no hay cambios, el programa no necesita volver a transferir los archivos que ya están actualizados. La opción `--itemize-changes` ayuda a mostrar qué cambios detecta.
 
-Después de modificar el contenido del origen, se verifica que la siguiente ejecución detecta y aplica los cambios correspondientes en el destino.
+```bash
+rsync -avh --itemize-changes origen/ destino/
+```
 
-![Comprobación de los cambios incrementales](../img/cambios_incremental.png)
+## 6. Modificar un archivo y sincronizar los cambios
 
-### 6. Verificar los permisos
+Para comprobar la actualización incremental, añado una línea al archivo del origen y vuelvo a ejecutar `rsync`. En la salida se puede observar que detecta el archivo modificado.
 
-Además del contenido, conviene comprobar que los permisos de los archivos y directorios se conservan según las opciones utilizadas al ejecutar `rsync`.
+```bash
+echo "Cambio realizado para probar la copia incremental" >> origen/archivo_prueba.txt
+rsync -avh --itemize-changes origen/ destino/
+```
 
-![Comprobación de permisos](../img/comprobar_permisos.png)
+Después puedo comprobar que el cambio también aparece en la copia:
 
-### 7. Recuperar el contenido
+```bash
+cat destino/archivo_prueba.txt
+```
 
-La última captura documenta la recuperación o consulta del contenido respaldado. Esta comprobación ayuda a confirmar que los datos copiados siguen disponibles en el destino.
+## 7. Comprobar los permisos
 
-![Recuperación del contenido respaldado](../img/recuperar_contenido.png)
+En esta captura reviso los permisos del archivo en el origen y en el destino. `stat` muestra el modo numérico y simbólico, además del nombre del archivo. Como `rsync` se ejecutó con `-a`, se espera que conserve los permisos, siempre que el sistema de archivos y los permisos del usuario lo permitan.
 
-## Resumen del procedimiento
+```bash
+stat -c '%A (%a) %n' origen/archivo_prueba.txt destino/archivo_prueba.txt
+```
 
-1. Preparar el directorio de origen y, si hace falta, un archivo de prueba.
-2. Comprobar el contenido del origen y del destino.
-3. Ejecutar `rsync` para copiar los datos al destino.
-4. Realizar cambios en el origen y repetir la operación para actualizar la copia.
-5. Verificar los archivos y sus permisos en el destino.
-6. Comprobar que el contenido respaldado se puede consultar o recuperar.
+## 8. Recuperar el contenido de la copia
 
-> **Nota:** Las capturas documentan visualmente los pasos. Para reproducir exactamente la actividad, utiliza el comando de `rsync`, las rutas y las opciones que aparecen en la terminal de las imágenes; no se especifican aquí porque dependen de la configuración concreta de la práctica.
+La última captura representa la recuperación de un archivo guardado en el destino. En este ejemplo lo copio a un directorio de recuperación y luego leo su contenido.
+
+```bash
+mkdir -p recuperacion
+cp -a destino/archivo_prueba.txt recuperacion/
+cat recuperacion/archivo_prueba.txt
+```
+
+## Conclusión
+
+Con esta práctica comprobé que `rsync` puede copiar el contenido de un directorio y actualizar el destino cuando cambia un archivo. También revisé el resultado, comparé los permisos y recuperé un archivo desde la copia. Para repetir la actividad, hay que adaptar las rutas y los nombres a los utilizados en el equipo.
