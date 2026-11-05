@@ -4,8 +4,11 @@
 
 ### Estudiante de Administración de Sistemas Informáticos en Red (ASIR)
 
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1200&color=36BCF7&center=true&vCenter=true&width=650&lines=Redes+y+servicios;Administraci%C3%B3n+de+sistemas;Seguridad+y+alta+disponibilidad;Virtualizaci%C3%B3n+y+proyectos)](https://git.io/typing-svg)
+
 [![GitHub](https://img.shields.io/badge/GitHub-jasensioedt-181717?style=for-the-badge&logo=github)](https://github.com/jasensioedt)
 [![ASIR](https://img.shields.io/badge/Estudios-ASIR-2563EB?style=for-the-badge)](#)
+[![Repo](https://img.shields.io/badge/Repositorio-Portafolio-7C3AED?style=for-the-badge&logo=github)](https://github.com/jasensioedt/Joel-Asensio)
 
 **Prácticas y proyectos sobre redes, sistemas, seguridad y virtualización.**
 
@@ -55,7 +58,24 @@ Plataforma de auditoría de vulnerabilidades web.
 
 ---
 
+## 📊 Actividad en GitHub
+
+<div align="center">
+
+[![Estadísticas de GitHub](https://github-readme-stats.vercel.app/api?username=jasensioedt&show_icons=true&theme=tokyonight&hide_border=true&locale=es)](https://github.com/jasensioedt)
+[![Lenguajes más usados](https://github-readme-stats.vercel.app/api/top-langs/?username=jasensioedt&layout=compact&theme=tokyonight&hide_border=true&locale=es)](https://github.com/jasensioedt)
+
+</div>
+
+---
+
 ## 📫 Contacto
 
 - **GitHub:** [@jasensioedt](https://github.com/jasensioedt)
 - **Estudios:** Administración de Sistemas Informáticos en Red (ASIR)
+
+<div align="center">
+
+✨ *Gracias por visitar mi repositorio* ✨
+
+</div>
