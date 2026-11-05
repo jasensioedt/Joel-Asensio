@@ -29,7 +29,7 @@
 
 | Actividad | Descripción |
 |---|---|
-| [Playbook LDAP](./Admin_SO/Actividades/Playbook_LDAP.md) | Automatización de tareas relacionadas con LDAP mediante Ansible. |
+| [Playbook LDAP](./Admin_SO/Actividades/Playbook_LDAP.md) | Actividad práctica sobre LDAP. |
 | [Idmap realmadrid](./Admin_SO/Actividades/ldmap_realmadrid.md) | Configuración de idmap. |
 | [FusionDirectory + NFS](https://github.com/dmbat06-gif/Admin_sistemasop/blob/main/fusiondirectory_nfs.md) | Configuración de FusionDirectory y NFS. |
 
@@ -46,11 +46,10 @@
 ### [LinkSight](https://github.com/jasensioedt/LinkSight)
 Plataforma de auditoría de vulnerabilidades web.
 
-### 📁 Documentación del proyecto
+### 📁 Documentos personales para el proyecto
 - [Defensa del proyecto](./Proyecto/Defensa_Grupo.md)
 - [Ideas del proyecto](./Proyecto/Ideas_proyecto.md)
 - [Qué aporto y qué busco](./Proyecto/Que_aporto_y_que_busco.md)
-- [Instalación](./Proyecto/instalacion.md)
 - [Paso a paso](./Proyecto/paso_a_paso.md)
 - [Proxmox](./Proyecto/proxmox.md)
 
