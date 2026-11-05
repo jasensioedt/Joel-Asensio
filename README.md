@@ -8,7 +8,6 @@
 
 [![GitHub](https://img.shields.io/badge/GitHub-jasensioedt-181717?style=for-the-badge&logo=github)](https://github.com/jasensioedt)
 [![ASIR](https://img.shields.io/badge/Estudios-ASIR-2563EB?style=for-the-badge)](#)
-[![Repo](https://img.shields.io/badge/Repositorio-Portafolio-7C3AED?style=for-the-badge&logo=github)](https://github.com/jasensioedt/Joel-Asensio)
 
 **Prácticas y proyectos sobre redes, sistemas, seguridad y virtualización.**
 
@@ -75,5 +74,9 @@ Plataforma de auditoría de vulnerabilidades web.
 - **Estudios:** Administración de Sistemas Informáticos en Red (ASIR)
 
 <div align="center">
+
+✨ *Gracias por visitar mi repositorio* ✨
+
+![Onda animada](https://capsule-render.vercel.app/api?type=waving&color=0:36BCF7,100:7C3AED&height=120&section=footer)
 
 </div>
