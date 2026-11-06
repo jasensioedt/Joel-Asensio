@@ -59,7 +59,7 @@ Plataforma de auditoría de vulnerabilidades web.
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=transparent&height=100&text=Redes%20%7C%20Sistemas%20%7C%20Seguridad&fontSize=28&fontColor=36BCF7&animation=fadeIn" alt="Animación: redes, sistemas y seguridad" />
+<img src="https://imgs.search.brave.com/-2ZI4hqM4ublhaxt_Qw3tj8MSmGR9N70JlH9sJtdy4U/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YTQuZ2lwaHkuY29t/L21lZGlhL3YxLlky/bGtQVGM1TUdJM05q/RXhkMkZrZFhSek1u/VmpNVzVrYTJ4MWRE/bDBaV05zTlhob01u/ZGtNRGN4TTNkdlpt/bGhaREF5ZENabGNE/MTJNVjluYVdaelgz/TmxZWEpqYUNaamRE/MW4vYnFldDhBcTgy/QjE1M2xQb085L2dp/cGh5LmdpZg.gif" alt="Animación de conexión a Internet" width="420" />
 
 </div>
 
@@ -71,7 +71,6 @@ Plataforma de auditoría de vulnerabilidades web.
 - **Estudios:** Administración de Sistemas Informáticos en Red (ASIR)
 
 <div align="center">
-
 
 ![Onda animada](https://capsule-render.vercel.app/api?type=waving&color=0:36BCF7,100:7C3AED&height=120&section=footer)
 
