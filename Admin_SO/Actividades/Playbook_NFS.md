@@ -1,6 +1,6 @@
 # Playbook: despliegue de FusionDirectory y NFS con control de acceso LDAP
 
-**Entorno:** Ubuntu Server y cliente  
+**Entorno:** Ubuntu desktop  
 **IP del servidor:** `20.0.0.5`  
 **Dominio base LDAP:** `dc=linksight,dc=local`
 
