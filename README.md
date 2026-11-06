@@ -33,7 +33,7 @@
 |---|---|
 | [Playbook LDAP](./Admin_SO/Actividades/Playbook_LDAP.md) | Actividad práctica sobre LDAP. |
 | [Idmap realmadrid](./Admin_SO/Actividades/ldmap_realmadrid.md) | Configuración de Ldmap. |
-| [FusionDirectory + NFS](https://github.com/dmbat06-gif/Admin_sistemasop/blob/main/fusiondirectory_nfs.md) | Configuración de FusionDirectory y NFS. |
+| [FusionDirectory + NFS](./Admin_SO/Actividades/Playbook_NFS.md) | Configuración de FusionDirectory y NFS. |
 
 ### 🔐 Seguridad y alta disponibilidad
 
