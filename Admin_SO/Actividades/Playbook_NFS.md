@@ -38,9 +38,15 @@ El asistente muestra varias pantallas para completar la configuración.
 
 Seleccionamos **Spanish (Español)**.
 
-#### Comprobación de la instalación
+![Selección de idioma en el asistente de FusionDirectory](../img/nfs/idiomas.png)
 
-El asistente valida las extensiones de PHP. En este entorno, las comprobaciones de módulos como LDAP, `mbstring` e `intl`, así como las de configuración de PHP, indicaron **Ok**.
+#### Bienvenida y comprobación de la instalación
+
+La pantalla de bienvenida inicia el asistente. Después, este valida las extensiones de PHP. En este entorno, las comprobaciones de módulos como LDAP, `mbstring` e `intl`, así como las de configuración de PHP, indicaron **Ok**.
+
+![Pantalla de bienvenida de FusionDirectory](../img/nfs/bienvenido_setup.png)
+
+![Comprobación de la instalación de FusionDirectory](../img/nfs/comprobar_instalacion.png)
 
 #### Token de seguridad
 
@@ -66,6 +72,8 @@ Introducimos los datos de conexión con OpenLDAP:
 
 A continuación, introducimos la contraseña del administrador. El asistente debe confirmar que la conexión se ha establecido correctamente.
 
+![Configuración de la conexión LDAP en FusionDirectory](../img/nfs/configuracion_ldap_fusiond.png)
+
 #### Configuración de FusionDirectory
 
 En el apartado **Almacén de grupos y usuarios**, configuramos:
@@ -75,11 +83,15 @@ En el apartado **Almacén de grupos y usuarios**, configuramos:
 | Usuarios RDN | `ou=usuarios` |
 | ACL Rol RDN | `ou=acroles` |
 
+![Configuración del almacén de FusionDirectory](../img/nfs/config_fusiond.png)
+
 #### Inspección LDAP
 
 El sistema analiza el directorio y puede mostrar avisos, por ejemplo, sobre usuarios fuera de `ou=usuarios` o departamentos no visibles.
 
 Si el entorno se creó desde cero, revisamos los avisos y elegimos si queremos adaptar la estructura con **Migrar** o terminar la configuración sin migrarla.
+
+![Inspección del directorio LDAP](../img/nfs/inspeccion_ldap.png)
 
 ---
 
@@ -105,6 +117,8 @@ sudo chmod 770 /srv/nfs/seguridad
 
 Con permisos `770`, el propietario (`root`) y los miembros del grupo `seguridad` pueden acceder al directorio; el resto de usuarios no puede entrar.
 
+![Directorio NFS y permisos asignados](../img/nfs/directorio_permisos.png)
+
 ### 3. Configuración de `/etc/exports`
 
 Editamos `/etc/exports`:
@@ -119,6 +133,8 @@ Como el servidor tiene la IP `20.0.0.5` y se asume una máscara `/24`, permitimo
 /srv/nfs/seguridad 20.0.0.0/24(rw,sync,no_subtree_check,root_squash)
 ```
 
+![Configuración de la exportación NFS](../img/nfs/exports.png)
+
 > **Nota de seguridad:** `root_squash` es la opción recomendada normalmente, ya que evita que el usuario root del cliente tenga privilegios de root sobre el servidor. Usa `no_root_squash` solo en un laboratorio aislado y si existe una necesidad concreta; no lo expongas en redes no confiables.
 
 Aplicamos y verificamos los cambios:
@@ -131,6 +147,8 @@ showmount -e localhost
 ```
 
 El servicio debería aparecer como `active (exited)`. Con `showmount -e localhost` comprobamos que el directorio se exporta a `20.0.0.0/24`.
+
+![Verificación de la configuración y del recurso NFS](../img/nfs/verificacion.png)
 
 ---
 
@@ -164,8 +182,6 @@ Salida esperada:
 drwxrwx--- 2 root seguridad 4096 nov 6 02:26 /srv/nfs/seguridad
 ```
 
-> Estos comandos aparecen en la captura del módulo B.
-
 ### 2. Prueba de control de acceso
 
 #### Acceso permitido
@@ -186,6 +202,8 @@ Salida esperada:
 
 El archivo se crea con el UID de `isoler` y el GID de `seguridad`.
 
+![Prueba de acceso permitida para un usuario del grupo seguridad](../img/nfs/prueba_usuario.png)
+
 #### Acceso denegado
 
 Probamos con `cmora`, que no pertenece al grupo:
@@ -202,3 +220,5 @@ touch: no se puede efectuar 'touch' sobre '/mnt/prueba.txt': Permiso denegado
 ```
 
 El acceso se deniega porque el cliente consulta los grupos mediante LDAP (NSS/SSSD) y `cmora` no pertenece a `seguridad`. Por tanto, los permisos `770` del directorio bloquean el acceso.
+
+![Prueba de acceso denegado para un usuario ajeno al grupo seguridad](../img/nfs/usuario_noautorizado.png)
