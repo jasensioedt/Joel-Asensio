@@ -22,7 +22,7 @@ sudo apt install apache2 php libapache2-mod-php \
   php-ldap php-mbstring php-xml php-curl php-intl -y
 ```
 
-> Además, hay que añadir el repositorio oficial de FusionDirectory y cargar sus esquemas con `fusiondirectory-schema-manager`, como se hizo antes de tomar las capturas.
+> Además, hay que añadir el repositorio oficial de FusionDirectory y cargar sus esquemas con `fusiondirectory-schema-manager`.
 
 ### 2. Asistente web de configuración
 
@@ -34,30 +34,31 @@ http://20.0.0.5/fusiondirectory/setup.php
 
 El asistente muestra varias pantallas para completar la configuración.
 
-#### Selección de idioma
-
-Seleccionamos **Spanish (Español)**.
-
-![Selección de idioma en el asistente de FusionDirectory](../img/nfs/idiomas.png)
-
 #### Bienvenida y comprobación de la instalación
 
 La pantalla de bienvenida inicia el asistente. Después, este valida las extensiones de PHP. En este entorno, las comprobaciones de módulos como LDAP, `mbstring` e `intl`, así como las de configuración de PHP, indicaron **Ok**.
 
 ![Pantalla de bienvenida de FusionDirectory](../img/nfs/bienvenido_setup.png)
 
-![Comprobación de la instalación de FusionDirectory](../img/nfs/comprobar_instalacion.png)
-
 #### Token de seguridad
 
-El asistente solicita crear un archivo de autenticación en el servidor. Ejecuta el comando que aparece en tu pantalla, usando el token generado para tu instalación:
+El asistente solicita crear un archivo de autenticación en el servidor. Hay que ejecutar que aparece en tu pantalla, usando el token generado por la instalación:
 
 ```bash
-echo -n '<TOKEN_GENERADO_POR_EL_ASISTENTE>' \
-  | sudo tee /var/cache/fusiondirectory/fusiondirectory.auth >/dev/null
+echo -n '<TOKEN_GENERADO_POR_EL_ASISTENTE>' | sudo tee /var/cache/fusiondirectory/fusiondirectory.auth >/dev/null
 ```
 
-**No publiques el token real** en el README ni en otros archivos del repositorio.
+#### Selección de idioma
+
+Seleccionamos **Spanish (Español)**.
+
+![Selección de idioma en el asistente de FusionDirectory](../img/nfs/idiomas.png)
+
+#### Comprobar la instalación
+En este apartado solo comprobamos que no hay errores en los módulos o extensiones de php
+
+![Comprobación de la instalación de FusionDirectory](../img/nfs/comprobar_instalacion.png)
+
 
 #### Configuración LDAP
 
@@ -66,7 +67,7 @@ Introducimos los datos de conexión con OpenLDAP:
 | Campo | Valor |
 |---|---|
 | Nombre de localización | `default` |
-| URI | `ldap://localhost:389` |
+| URL | `ldap://localhost:389` |
 | Base | `dc=linksight,dc=local` |
 | DN del administrador | `cn=admin,dc=linksight,dc=local` |
 
@@ -89,7 +90,6 @@ En el apartado **Almacén de grupos y usuarios**, configuramos:
 
 El sistema analiza el directorio y puede mostrar avisos, por ejemplo, sobre usuarios fuera de `ou=usuarios` o departamentos no visibles.
 
-Si el entorno se creó desde cero, revisamos los avisos y elegimos si queremos adaptar la estructura con **Migrar** o terminar la configuración sin migrarla.
 
 ![Inspección del directorio LDAP](../img/nfs/inspeccion_ldap.png)
 
@@ -127,7 +127,7 @@ Editamos `/etc/exports`:
 sudo nano /etc/exports
 ```
 
-Como el servidor tiene la IP `20.0.0.5` y se asume una máscara `/24`, permitimos la subred `20.0.0.0/24`:
+Como el servidor tiene la IP `20.0.0.5` y una máscara `/24`, permitimos la subred `20.0.0.0/24`:
 
 ```text
 /srv/nfs/seguridad 20.0.0.0/24(rw,sync,no_subtree_check,root_squash)
@@ -135,7 +135,6 @@ Como el servidor tiene la IP `20.0.0.5` y se asume una máscara `/24`, permitimo
 
 ![Configuración de la exportación NFS](../img/nfs/exports.png)
 
-> **Nota de seguridad:** `root_squash` es la opción recomendada normalmente, ya que evita que el usuario root del cliente tenga privilegios de root sobre el servidor. Usa `no_root_squash` solo en un laboratorio aislado y si existe una necesidad concreta; no lo expongas en redes no confiables.
 
 Aplicamos y verificamos los cambios:
 
@@ -154,7 +153,10 @@ El servicio debería aparecer como `active (exited)`. Con `showmount -e localhos
 
 ## Módulo C: verificación y resolución de problemas
 
-Para comprobar la integración con LDAP, montamos el recurso desde un cliente y probamos el acceso con usuarios distintos.
+Para comprobar la integración con LDAP, montamos el recurso y probamos el acceso con usuarios distintos.
+```bash
+sudo mount -t nfs 127.0.0.1:/srv/nfs/seguridad /mnt
+```
 
 ### 1. Comprobación de grupos LDAP
 
@@ -164,10 +166,10 @@ Verificamos que los usuarios pertenecen al grupo esperado:
 getent group seguridad
 ```
 
-Salida esperada:
+Salida:
 
 ```text
-seguridad:*:10002:isoler,herrer
+seguridad:*:10002:isoler,hferrer
 ```
 
 Comprobamos también los permisos del directorio en el servidor:
@@ -176,7 +178,7 @@ Comprobamos también los permisos del directorio en el servidor:
 ls -ld /srv/nfs/seguridad
 ```
 
-Salida esperada:
+Salida:
 
 ```text
 drwxrwx--- 2 root seguridad 4096 nov 6 02:26 /srv/nfs/seguridad
@@ -194,7 +196,7 @@ touch /mnt/prueba.txt
 ls -l /mnt/prueba.txt
 ```
 
-Salida esperada:
+Salida:
 
 ```text
 -rw-r--r-- 1 isoler seguridad 0 nov 6 02:42 /mnt/prueba.txt
@@ -219,6 +221,6 @@ Salida esperada:
 touch: no se puede efectuar 'touch' sobre '/mnt/prueba.txt': Permiso denegado
 ```
 
-El acceso se deniega porque el cliente consulta los grupos mediante LDAP (NSS/SSSD) y `cmora` no pertenece a `seguridad`. Por tanto, los permisos `770` del directorio bloquean el acceso.
+El acceso se deniega porque el cliente consulta los grupos mediante LDAP y `cmora` no pertenece a `seguridad`. Por tanto, los permisos `770` del directorio bloquean el acceso.
 
 ![Prueba de acceso denegado para un usuario ajeno al grupo seguridad](../img/nfs/usuario_noautorizado.png)
