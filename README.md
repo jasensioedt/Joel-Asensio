@@ -59,7 +59,7 @@ Plataforma de auditoría de vulnerabilidades web.
 
 <div align="center">
 
-<img src="https://imgs.search.brave.com/-2ZI4hqM4ublhaxt_Qw3tj8MSmGR9N70JlH9sJtdy4U/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YTQuZ2lwaHkuY29t/L21lZGlhL3YxLlky/bGtQVGM1TUdJM05q/RXhkMkZrZFhSek1u/VmpNVzVrYTJ4MWRE/bDBaV05zTlhob01u/ZGtNRGN4TTNkdlpt/bGhaREF5ZENabGNE/MTJNVjluYVdaelgz/TmxZWEpqYUNaamRE/MW4vYnFldDhBcTgy/QjE1M2xQb085L2dp/cGh5LmdpZg.gif" alt="Animación de conexión a Internet" width="420" />
+<img src="https://imgs.search.brave.com/TG3jBi-GmAS6-VOWeM6SFAdk2BXxB2eEOx60KEt0BSs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzlkL2Vh/LzY0LzlkZWE2NDIy/YWZlZTE1MGNiZTJm/NjViNTMxNzI4NWVi/LmdpZg.gif" alt="GIF animado" width="420" />
 
 </div>
 
