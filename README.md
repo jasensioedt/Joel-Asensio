@@ -57,11 +57,10 @@ Plataforma de auditoría de vulnerabilidades web.
 
 ---
 
-## 📊 Actividad en GitHub
-
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=jasensioedt&show_icons=true&theme=tokyonight&hide_border=true&locale=es" alt="Estadísticas de GitHub de Joel Asensio" height="180" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=jasensioedt&layout=compact&theme=tokyonight&hide_border=true&locale=es" alt="Lenguajes más usados por Joel Asensio" height="180" />
+
+<img src="https://capsule-render.vercel.app/api?type=transparent&height=100&text=Redes%20%7C%20Sistemas%20%7C%20Seguridad&fontSize=28&fontColor=36BCF7&animation=fadeIn" alt="Animación: redes, sistemas y seguridad" />
+
 </div>
 
 ---
