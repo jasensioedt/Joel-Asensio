@@ -57,21 +57,7 @@ Plataforma de auditoría de vulnerabilidades web.
 
 ---
 
-<div align="center">
-
-<img src="./img/giphy.gif" alt="GIF animado de conexión a Internet" width="900" />
-
-</div>
-
----
-
 ## 📫 Contacto
 
 - **GitHub:** [@jasensioedt](https://github.com/jasensioedt)
 - **Estudios:** Administración de Sistemas Informáticos en Red (ASIR)
-
-<div align="center">
-
-![Onda animada](https://capsule-render.vercel.app/api?type=waving&color=0:36BCF7,100:7C3AED&height=120&section=footer)
-
-</div>
