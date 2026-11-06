@@ -18,8 +18,7 @@ Instalamos los paquetes base:
 
 ```bash
 sudo apt update
-sudo apt install apache2 php libapache2-mod-php \
-  php-ldap php-mbstring php-xml php-curl php-intl -y
+sudo apt install apache2 php libapache2-mod-php php-ldap php-mbstring php-xml php-curl php-intl -y
 ```
 
 > Además, hay que añadir el repositorio oficial de FusionDirectory y cargar sus esquemas con `fusiondirectory-schema-manager`.
@@ -36,13 +35,13 @@ El asistente muestra varias pantallas para completar la configuración.
 
 #### Bienvenida y comprobación de la instalación
 
-La pantalla de bienvenida inicia el asistente. Después, este valida las extensiones de PHP. En este entorno, las comprobaciones de módulos como LDAP, `mbstring` e `intl`, así como las de configuración de PHP, indicaron **Ok**.
+La pantalla de bienvenida inicia el asistente. 
 
 ![Pantalla de bienvenida de FusionDirectory](../img/nfs/bienvenido_setup.png)
 
 #### Token de seguridad
 
-El asistente solicita crear un archivo de autenticación en el servidor. Hay que ejecutar que aparece en tu pantalla, usando el token generado por la instalación:
+El asistente solicita crear un archivo de autenticación en el servidor. Hay que ejecutar lo que aparece en la pantalla, usando el token generado por la instalación:
 
 ```bash
 echo -n '<TOKEN_GENERADO_POR_EL_ASISTENTE>' | sudo tee /var/cache/fusiondirectory/fusiondirectory.auth >/dev/null
