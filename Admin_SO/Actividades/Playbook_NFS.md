@@ -12,7 +12,7 @@
 
 Para habilitar la interfaz web se necesitan Apache y PHP.
 
-> **Compatibilidad:** comprueba qué versión de PHP admite la versión de FusionDirectory que vas a instalar y la versión de Ubuntu utilizada. No instales PHP 7.4 automáticamente si no es compatible o no está disponible en los repositorios configurados.
+> **Compatibilidad:** La versión que instala apt por defecto (PHP 8.x) me daba error y dejaba la pantalla en blanco. Para que la interfaz de FusionDirectory cargara bien, tuve que cambiar y dejar activa la versión 7.4.
 
 Instalamos los paquetes base:
 
