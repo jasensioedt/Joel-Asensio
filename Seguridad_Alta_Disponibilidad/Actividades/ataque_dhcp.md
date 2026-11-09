@@ -70,7 +70,7 @@ paquete para que el servidor las interprete como clientes diferentes.
 sudo python3 starvation.py     # Ctrl+C para detener
 ```
 
-![Script starvation.py en ejecución](img/02-script-starvation.png)
+![Script starvation.py en ejecución](../img/ataque_dhcp/script_python.png)
 
 ### 4.2 Método B — Yersinia
 
@@ -78,7 +78,7 @@ sudo python3 starvation.py     # Ctrl+C para detener
 sudo yersinia -G     # DHCP → sending DISCOVER packets → ~15 s → stop
 ```
 
-![Ataque de agotamiento con Yersinia](img/03-ataque-yersinia.png)
+![Ataque de agotamiento con Yersinia](../img/ataque_dhcp/ataque_yersinia.png)
 
 ### 4.3 Análisis en Wireshark
 
@@ -87,7 +87,7 @@ comprueba que la dirección de **Ethernet → Source (L2)** coincide con **DHCP 
 Client hardware address / `chaddr` (L7)**: el script altera ambos campos a la
 vez con la misma MAC aleatoria.
 
-![Detalle de una trama DHCP en Wireshark: capa Ethernet II y direcciones](img/04-wireshark-trama-mac-chaddr.png)
+![Detalle de una trama DHCP en Wireshark: capa Ethernet II y direcciones](../img/ataque_dhcp/trama.png)
 
 ---
 
@@ -112,7 +112,7 @@ sudo dhclient -v enp0s3     # solicita de nuevo
 El cliente queda en un **bucle infinito de DHCPDISCOVER sin recibir OFFER**: la
 red está indisponible. Esta es la evidencia de la DoS.
 
-![El cliente libera y vuelve a solicitar direccionamiento (dhclient -r / -v)](img/05-cliente-bucle-discover.png)
+![El cliente libera y vuelve a solicitar direccionamiento (dhclient -r / -v)](../img/ataque_dhcp/bucle_discover.png)
 
 ---
 
@@ -139,7 +139,7 @@ sudo iptables -L INPUT -v -n
 > Antes de aplicar la regla conviene confirmar por dónde entra el tráfico con
 > `sudo tcpdump -n udp port 67`.
 
-![Regla de hashlimit aplicada en iptables](img/06-regla-iptables.png)
+![Regla de hashlimit aplicada en iptables](../img/ataque_dhcp/regla_iptable.png)
 
 ---
 
@@ -164,7 +164,7 @@ sudo iptables -L INPUT -v -n
 El contador de **pkts** de la regla `DROP` se incrementa rápidamente: el
 bombardeo queda neutralizado en primera línea de defensa.
 
-![Contador de iptables bloqueando el ataque + defensa activa](img/07-defensa-contador.png)
+![Contador de iptables bloqueando el ataque + defensa activa](../img/ataque_dhcp/ataque_iptables.png)
 
 ### 7.2 El cliente legítimo recupera la conectividad (VM3)
 
