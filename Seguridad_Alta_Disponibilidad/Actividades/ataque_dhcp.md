@@ -36,7 +36,7 @@ sudo kea-dhcp4 -t /etc/kea/kea-dhcp4.conf     # valida la sintaxis del JSON
 
 ```bash
 sudo apt update && sudo apt install -y isc-dhcp-client
-sudo dhclient -v enp0s3
+sudo dhclient -v eth0
 ip a
 ```
 
@@ -75,7 +75,7 @@ sudo python3 starvation.py     # Ctrl+C para detener
 ### 4.2 Método B — Yersinia
 
 ```bash
-sudo yersinia -G     # DHCP → sending DISCOVER packets → ~15 s → stop
+sudo yersinia -I     # DHCP → sending DISCOVER packets → ~15 s → stop
 ```
 
 ![Ataque de agotamiento con Yersinia](../img/ataque_dhcp/ataque_yersinia.png)
@@ -177,54 +177,10 @@ operatividad legítima de la red no se ve afectada por la mitigación.
 
 ---
 
-## 8. Otras mitigaciones (nivel de infraestructura)
 
-### 8.1 DHCP Snooping (switch de acceso, Cisco IOS)
+## 8. Preguntas
 
-```cisco
-ip dhcp snooping
-ip dhcp snooping vlan 10
-interface gi0/1                 ! puerto hacia el servidor DHCP legítimo
- ip dhcp snooping trust
-interface range gi0/2-24        ! puertos de usuarios = untrusted
- ip dhcp snooping limit rate 10
-```
-
-El switch marca como *trusted* únicamente el puerto del servidor legítimo; por
-los puertos *untrusted* solo deja pasar mensajes de cliente (DISCOVER/REQUEST)
-y limita su tasa, cortando la inundación.
-
-### 8.2 Port Security
-
-```cisco
-interface range gi0/2-24
- switchport port-security
- switchport port-security maximum 2
- switchport port-security violation restrict
- switchport port-security mac-address sticky
-```
-
-### 8.3 Endurecimiento del servidor Kea
-
-El `deny unknown-clients;` es sintaxis de ISC DHCP y **no existe en Kea**. El
-equivalente es la clasificación de clientes `KNOWN`/`UNKNOWN` con reservas: solo
-los clientes con reserva obtienen IP del pool.
-
-```json
-"subnet4": [{
-  "subnet": "10.0.0.0/24",
-  "pools": [{ "pool": "10.0.0.100 - 10.0.0.150", "client-class": "KNOWN" }],
-  "reservations": [
-    { "hw-address": "08:00:27:xx:xx:xx", "ip-address": "10.0.0.100" }
-  ]
-}]
-```
-
----
-
-## 9. Preguntas
-
-### 9.1 Análisis de capas — ¿por qué alterar a la vez la MAC Ethernet (L2) y el `chaddr` (L7)?
+### 8.1 Análisis de capas — ¿por qué alterar a la vez la MAC Ethernet (L2) y el `chaddr` (L7)?
 
 El servidor DHCP **no identifica al cliente por la MAC de la trama Ethernet,
 sino por el campo `chaddr`** (client hardware address) del *payload* y, en su
@@ -250,7 +206,7 @@ pool, o bien es fácilmente mitigable.
 
 ---
 
-## 10. Conclusiones
+## 9. Conclusiones
 
 El ataque de DHCP Starvation demuestra cómo, con herramientas estándar y en una
 red sin protección, un único nodo puede dejar sin servicio a toda una LAN
