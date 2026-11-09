@@ -43,7 +43,7 @@ ip a
 El cliente completa el intercambio **DISCOVER → OFFER → REQUEST → ACK** y
 recibe una IP del rango configurado en el servidor.
 
-![Primera solicitud DORA desde el cliente legítimo](img/01-dora-primera-solicitud.png)
+![Primera solicitud DORA desde el cliente legítimo](../img/ataque_dhcp/dora.png)
 
 ### 3.3 Concesión registrada en el servidor (VM2)
 
