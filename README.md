@@ -40,6 +40,7 @@
 | Actividad | Descripción |
 |---|---|
 | [Rsync y copias de seguridad](./Seguridad_Alta_Disponibilidad/Actividades/rsync_backups.md) | Sincronización de archivos y copias incrementales con rsync. |
+| [Ataque DHCP Starvation y mitigaciones](./Seguridad_Alta_Disponibilidad/Actividades/ataque_dhcp.md) | Laboratorio de agotamiento del pool DHCP, análisis con Wireshark y medidas de defensa con iptables, DHCP Snooping y Kea. |
 
 ---
 
