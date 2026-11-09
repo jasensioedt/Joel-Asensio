@@ -70,17 +70,7 @@ paquete para que el servidor las interprete como clientes diferentes.
 sudo python3 starvation.py     # Ctrl+C para detener
 ```
 
-![Script starvation.py en ejecución](../img/ataque_dhcp/script_python.png)
-
-### 4.2 Método B — Yersinia
-
-```bash
-sudo yersinia -I     # DHCP → sending DISCOVER packets → ~15 s → stop
-```
-
-![Ataque de agotamiento con Yersinia](../img/ataque_dhcp/ataque_yersinia.png)
-
-### 4.3 Análisis en Wireshark
+### 4.2 Análisis en Wireshark
 
 Filtro de visualización: `dhcp`. Al inspeccionar una trama del ataque se
 comprueba que la dirección de **Ethernet → Source (L2)** coincide con **DHCP →
@@ -88,6 +78,17 @@ Client hardware address / `chaddr` (L7)**: el script altera ambos campos a la
 vez con la misma MAC aleatoria.
 
 ![Detalle de una trama DHCP en Wireshark: capa Ethernet II y direcciones](../img/ataque_dhcp/trama.png)
+
+![Script starvation.py en ejecución](../img/ataque_dhcp/script_python.png)
+
+### 4.3 Método B — Yersinia
+
+```bash
+sudo yersinia -I     # DHCP → sending DISCOVER packets → ~15 s → stop
+```
+
+![Ataque de agotamiento con Yersinia](../img/ataque_dhcp/ataque_yersinia.png)
+
 
 ---
 
