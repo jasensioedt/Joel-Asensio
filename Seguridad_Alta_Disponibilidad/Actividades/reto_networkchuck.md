@@ -1,1 +1,206 @@
 
+Joel Asensio
+
+## 1. Objetivo
+
+Conseguir la contraseña y el usuario de una maquina en la red usando wordlists con **hydra**.
+
+## 2. Wireshark
+
+Teniamos un archivo pcap como pista aparte del video de networkchuck
+
+---
+
+## 3. Línea base — funcionamiento normal
+
+### 3.1 Comprobación del servidor Kea (VM2)
+
+```bash
+sudo systemctl status kea-dhcp4-server
+sudo kea-dhcp4 -t /etc/kea/kea-dhcp4.conf     # valida la sintaxis del JSON
+```
+
+### 3.2 Primera solicitud DORA desde el cliente (VM3)
+
+```bash
+sudo apt update && sudo apt install -y isc-dhcp-client
+sudo dhclient -v eth0
+ip a
+```
+
+El cliente completa el intercambio **DISCOVER → OFFER → REQUEST → ACK** y
+recibe una IP del rango configurado en el servidor.
+
+![Primera solicitud DORA desde el cliente legítimo](../img/ataque_dhcp/dora.png)
+
+### 3.3 Concesión registrada en el servidor (VM2)
+
+En Kea las concesiones se guardan en un CSV, no en `dhcpd.leases`:
+
+```bash
+sudo cat /var/lib/kea/kea-leases4.csv
+```
+
+Se observa la pareja **MAC ↔ IP** asignada al cliente legítimo (estado del
+sistema *antes* del ataque).
+
+---
+
+## 4. Ejecución del ataque — DHCP Starvation (VM1 Kali)
+
+### 4.1 Método A — Script en Python (Scapy)
+
+El script falsifica simultáneamente la **MAC de la trama Ethernet** y el campo
+**`chaddr`** del *payload* DHCP, generando una transacción distinta por cada
+paquete para que el servidor las interprete como clientes diferentes.
+
+```bash
+sudo python3 starvation.py     # Ctrl+C para detener
+```
+
+### 4.2 Análisis en Wireshark
+
+Filtro de visualización: `dhcp`. Al inspeccionar una trama del ataque se
+comprueba que la dirección de **Ethernet → Source (L2)** coincide con **DHCP →
+Client hardware address / `chaddr` (L7)**: el script altera ambos campos a la
+vez con la misma MAC aleatoria.
+
+![Detalle de una trama DHCP en Wireshark: capa Ethernet II y direcciones](../img/ataque_dhcp/trama.png)
+
+![Script starvation.py en ejecución](../img/ataque_dhcp/script_python.png)
+
+### 4.3 Método B — Yersinia
+
+```bash
+sudo yersinia -I     # DHCP → sending DISCOVER packets → ~15 s → stop
+```
+
+![Ataque de agotamiento con Yersinia](../img/ataque_dhcp/ataque_yersinia.png)
+
+
+---
+
+## 5. Validación del impacto (Denegación de Servicio)
+
+### 5.1 Agotamiento del pool (VM2)
+
+```bash
+sudo tail -n +2 /var/lib/kea/kea-leases4.csv | awk -F, '{print $1}' | sort -u | wc -l
+```
+
+En pocos segundos el número de IPs asignadas llena todo el pool: no quedan
+direcciones disponibles para nuevos nodos.
+
+### 5.2 El cliente legítimo deja de obtener IP (VM3)
+
+```bash
+sudo dhclient -r enp0s3     # libera la concesión actual
+sudo dhclient -v enp0s3     # solicita de nuevo
+```
+
+El cliente queda en un **bucle infinito de DHCPDISCOVER sin recibir OFFER**: la
+red está indisponible. Esta es la evidencia de la DoS.
+
+![El cliente libera y vuelve a solicitar direccionamiento (dhclient -r / -v)](../img/ataque_dhcp/bucle_discover.png)
+
+---
+
+## 6. Mitigación — Rate limiting con iptables (VM2)
+
+### 6.1 Adaptación de la regla a nf_tables
+
+El enunciado propone limitar por MAC de origen con `--hashlimit-mode srcmac`.
+Sin embargo, en el sistema de pruebas (**iptables v1.8.10, backend
+`nf_tables`**) ese modo **no está soportado** — solo admite `srcip`, `dstip`,
+`srcport`, `dstport` — y además carece de sentido en este ataque, ya que todos
+los DISCOVER falsos usan IP de origen `0.0.0.0`. Por ello se aplica un
+**límite global** sobre las peticiones DHCP de entrada al puerto 67:
+
+```bash
+sudo iptables -F INPUT
+sudo iptables -A INPUT -i enp0s8 -p udp --dport 67 \
+  -m hashlimit --hashlimit-name dhcp_limit \
+  --hashlimit-above 3/sec --hashlimit-burst 5 -j DROP
+sudo iptables -L INPUT -v -n
+```
+
+> **Nota de interfaz:** `enp0s8` es el adaptador conectado a la *Red Interna*.
+> Antes de aplicar la regla conviene confirmar por dónde entra el tráfico con
+> `sudo tcpdump -n udp port 67`.
+
+![Regla de hashlimit aplicada en iptables](../img/ataque_dhcp/regla_iptable.png)
+
+---
+
+## 7. Prueba de la defensa
+
+### 7.1 Reset del pool y relanzamiento del ataque
+
+```bash
+# Liberar el pool de Kea
+sudo systemctl stop kea-dhcp4-server
+sudo rm -f /var/lib/kea/kea-leases4.csv*
+sudo systemctl start kea-dhcp4-server
+```
+
+Con el ataque de nuevo en marcha desde Kali, se observa el contador de la regla
+en el servidor:
+
+```bash
+sudo iptables -L INPUT -v -n
+```
+
+El contador de **pkts** de la regla `DROP` se incrementa rápidamente: el
+bombardeo queda neutralizado en primera línea de defensa.
+
+![Contador de iptables bloqueando el ataque + defensa activa](../img/ataque_dhcp/ataque_iptables.png)
+
+### 7.2 El cliente legítimo recupera la conectividad (VM3)
+
+```bash
+sudo dhclient -v enp0s3
+```
+
+El cliente obtiene su direccionamiento con normalidad, demostrando que la
+operatividad legítima de la red no se ve afectada por la mitigación.
+
+---
+
+
+## 8. Preguntas
+
+### 8.1 Análisis de capas — ¿por qué alterar a la vez la MAC Ethernet (L2) y el `chaddr` (L7)?
+
+El servidor DHCP **no identifica al cliente por la MAC de la trama Ethernet,
+sino por el campo `chaddr`** (client hardware address) del *payload* y, en su
+caso, por el `client-id`. De ahí que haya que falsificar **ambos** campos:
+
+- **Si solo cambia el `chaddr` (L7)** y la MAC Ethernet se mantiene fija: el
+  servidor sí entrega una concesión distinta por cada `chaddr` (se agotaría el
+  pool), pero todas las tramas salen de **una única MAC de Capa 2**. Eso lo
+  detectan y bloquean trivialmente las defensas de L2: *Port Security* con
+  `maximum 1-2` corta el ataque de inmediato, y DHCP Snooping con verificación
+  de MAC descarta las tramas porque `chaddr` ≠ MAC de origen.
+- **Si solo cambia la MAC Ethernet (L2)** y el `chaddr` se mantiene fijo: el
+  servidor ve siempre **el mismo cliente** (mismo `chaddr`), por lo que
+  renueva/reutiliza la misma concesión en lugar de asignar nuevas. El pool
+  **no se agota** y el ataque fracasa.
+
+Por tanto, el atacante necesita variar el `chaddr` para drenar el pool (cada
+paquete parece un cliente nuevo) **y** variar la MAC Ethernet de forma
+coherente con él (MAC = `chaddr`, como haría un cliente real) para evadir los
+controles de Capa 2. Modificar uno solo de los dos campos, o bien no agota el
+pool, o bien es fácilmente mitigable.
+
+
+---
+
+## 9. Conclusiones
+
+El ataque de DHCP Starvation demuestra cómo, con herramientas estándar y en una
+red sin protección, un único nodo puede dejar sin servicio a toda una LAN
+agotando el pool de direcciones. La defensa eficaz es **en profundidad**:
+limitación de tasa en el host (iptables/nftables), controles de Capa 2 en el
+switch (DHCP Snooping y Port Security) y endurecimiento del propio servidor
+(clasificación de clientes en Kea). La mitigación aplicada frena la inundación
+sin degradar el servicio a los clientes legítimos.
