@@ -92,7 +92,7 @@ sudo aa-enforce /usr/sbin/nginx
 sudo systemctl restart nginx
 ```
 
-Al activar enforce con el perfil tal cual lo había dejado `aa-genprof`, Nginx dejó de arrancar. Hubo que ir corrigiendo el perfil poco a poco, cada vez que fallaba por un motivo distinto:
+Al activar enforce con el perfil tal cual lo había dejado `aa-genprof`, Nginx dejó de arrancar. Tuve que ir corrigiendo el perfil poco a poco, cada vez que fallaba por un motivo distinto:
 
 1. `open() "/run/nginx.pid" failed (Permission denied)` → el perfil solo tenía permiso de lectura sobre el pid, hacía falta también escritura: `owner /run/nginx.pid rw,`
 2. `open() "/var/log/nginx/error.log" failed` + un DENIED de capability `dac_override` → faltaba darle esa capability y permiso para escribir en los logs: `capability dac_override,` y `/var/log/nginx/*.log rw,`
