@@ -23,18 +23,21 @@ Para extraer cada archivo, clic derecho sobre su paquete → **Seguir → TCP St
 ---
 
 ## 3. Hydra
+Para saber el usuario y la contraseña que tiene tenemos que usar hydra, el comando que hemos usado es:
 
-Para obtener el usuario y la contraseña usamos hydra. Como la profesora nos facilitó el usuario (`aladar`), hicimos fuerza bruta solo sobre la contraseña, por lo que se usa `-l` (minúscula, usuario fijo) en lugar de `-L`:
-
-```bash
-sudo hydra -l "aladar" -P password.txt 192.168.111.55 ssh
+```
+sudo hydra -L usuarios.txt -P password.txt 192.168.111.55 ssh
 ```
 
-Esto utiliza el archivo `password.txt` como diccionario de contraseñas contra el servicio SSH de la máquina.
+Esto hace que utilice el archivo usuarios.txt para adivinar el usuario y el archivo password.txt para adivinar la contraseña, esto daba error y he estado buscando y es porque con ssh por defecto lo hace con 16 hilos y da fallos de conexion, lo que se recomienda es bajarlo a 4 hilos con -t 4 al final del comando como este:
 
-Al principio daba error: por defecto SSH se ataca con 16 hilos y provoca fallos de conexión. Lo recomendado es bajarlo a 4 hilos añadiendo `-t 4` al final:
+```
+sudo hydra -L usuarios.txt -P password.txt -t 4 192.168.111.55 ssh
+```
 
-```bash
+Como no nos funcionaba nos diste el usuario (`aladar`), al final hicimos fuerza bruta solo sobre la contraseña usando `-l` con el usuario fijo, que es el comando con el que conseguimos entrar:
+
+```
 sudo hydra -l "aladar" -P password.txt -t 4 192.168.111.55 ssh
 ```
 
@@ -65,7 +68,7 @@ Comprobamos que las credenciales funcionan conectándonos por SSH a la máquina:
 ssh aladar@192.168.111.55
 ```
 
-Tras aceptar el fingerprint e introducir la contraseña, accedemos a la máquina Debian. Como prueba de acceso con permisos de escritura, creamos un archivo dentro de `Documents/SEGiAD/`:
+Después de aceptar el fingerprint e introducir la contraseña, accedemos a la máquina Debian. Como prueba de acceso hemos creado un archivo dentro de `Documents/SEGiAD/`:
 
 ```bash
 touch joel_asensio
@@ -74,10 +77,3 @@ touch joel_asensio
 ![Acceso por SSH y prueba de escritura](../img/examen/respuesta.png)
 
 ---
-
-## 6. Conclusión
-
-El flujo completo del reto fue: a partir del archivo pcap, extrajimos las wordlists (`password.txt` y `usuarios.txt`) siguiendo el TCP Stream en Wireshark, realizamos un ataque de fuerza bruta con hydra sobre SSH y obtuvimos la contraseña del usuario `aladar`. Finalmente verificamos el acceso conectándonos por SSH y comprobando permisos de escritura en la máquina.
-
-El principal problema fue el error de conexión de hydra con los 16 hilos por defecto de SSH, resuelto limitando a 4 hilos con `-t 4`. Todo el proceso se realizó en un entorno de laboratorio autorizado.
-
