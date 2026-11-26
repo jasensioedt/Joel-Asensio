@@ -37,11 +37,15 @@ curl -I http://localhost/
 
 Después de parar Apache2, Nginx arrancó bien y respondió `200 OK`.
 
+![Estado de Nginx activo y respuesta 200 OK](../img/apparmor/status.png)
+
 ## 2. Generar el perfil con aa-genprof (modo complain)
 
 ```bash
 sudo aa-genprof /usr/sbin/nginx
 ```
+
+![Pantalla inicial de aa-genprof esperando a escanear eventos](../img/apparmor/generar_perfil.png)
 
 Mientras se quedaba esperando, en otra terminal se le dio tráfico de prueba para que detectara todo lo que usa:
 
@@ -54,13 +58,17 @@ sudo nginx -s reopen
 
 Con eso, `aa-genprof` fue detectando los accesos que hace Nginx (su fichero de configuración, el fichero de passwd para buscar el usuario www-data, el módulo de nginx, las señales HUP y USR1 que usa para recargar y reabrir logs...) y se fueron aceptando uno por uno con "Allow", hasta guardar el perfil.
 
-**Cosa importante que pasó:** cuando terminas con `aa-genprof`, el perfil se queda guardado directamente en modo **enforce**, no en complain como cabría esperar. Hubo que forzarlo a mano:
+**Importante:** cuando terminas con `aa-genprof`, el perfil se queda guardado en modo **enforce**, no en complain como se espera. Tuve que forzarlo a mano:
+
+![aa-genprof guardando el perfil y dejándolo en modo forzar (enforce)](../img/apparmor/perfil_generado.png)
 
 ```bash
 sudo aa-complain /usr/sbin/nginx
 sudo systemctl restart nginx
 sudo aa-status | grep -B2 -A5 "complain mode"
 ```
+
+![aa-status confirmando nginx en modo complain tras forzarlo](../img/apparmor/complain.png)
 
 Y ahí ya salía bien, con nginx en la lista de perfiles y procesos en modo complain.
 
